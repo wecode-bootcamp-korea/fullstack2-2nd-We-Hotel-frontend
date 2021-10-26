@@ -3,6 +3,7 @@ import axios from 'axios';
 import initMockAPI from '../../mocks';
 import Carousel from '../../components/Carousel/Carousel';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer.js';
 import styled from 'styled-components';
 
 function Main() {
@@ -34,6 +35,7 @@ function Main() {
         width="720"
         height="360"
       />
+      <Footer />
     </Container>
   );
 }
