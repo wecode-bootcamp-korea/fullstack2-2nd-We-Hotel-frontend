@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from './Routes';
-import './styles/reset.css';
-import './styles/common.css';
-import './styles/color.css';
+import GlobalStyle from './styles/GlobalStyle';
+import { Reset } from 'styled-reset';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <GlobalStyle>
+    <Reset />
     <Router />
-  </React.StrictMode>,
+  </GlobalStyle>,
   document.getElementById('root')
 );
