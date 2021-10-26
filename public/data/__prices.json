@@ -1,0 +1,8 @@
+{
+  "prices": {
+    "sunday": 50000,
+    "friday": 60000,
+    "saturday": 70000,
+    "commonDay": 80000
+  }
+}
