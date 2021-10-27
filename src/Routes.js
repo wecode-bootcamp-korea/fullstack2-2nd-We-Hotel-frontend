@@ -11,7 +11,6 @@ import Review from './pages/Review/Review';
 import Search from './pages/Search/Search';
 import SearchResult from './pages/Search/SearchResult';
 import ReservationDetail from './pages/Reservation/ReservationDetail';
-import ModalContext from './Contexts/ModalContext/ModalContext';
 
 function Router() {
   return (
@@ -20,9 +19,7 @@ function Router() {
         <Route exact path="/" component={Main} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <ModalContext>
-          <Route exact path="/detail" component={Detail} />
-        </ModalContext>
+        <Route exact path="/detail" component={Detail} />
         <Route exact path="/list" component={List} />
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
