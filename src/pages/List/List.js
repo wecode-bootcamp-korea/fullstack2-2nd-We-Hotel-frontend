@@ -1,12 +1,22 @@
 import React from 'react';
+import SelectContainer from './components/SelectContainer';
+import AccommodationContainer from './components/AccomodationContainer';
 import styled from 'styled-components';
 
 function List() {
-  return <Container>List Page</Container>;
+  return (
+    <MainList>
+      <SelectContainer />
+      <AccommodationContainer />
+    </MainList>
+  );
 }
 
 export default List;
 
-const Container = styled.div`
-  background-color: blue;
+const MainList = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
