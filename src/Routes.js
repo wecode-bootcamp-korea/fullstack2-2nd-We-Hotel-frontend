@@ -9,6 +9,7 @@ import Main from './pages/Main/Main';
 import MyDaily from './pages/MyDaily/MyDaily';
 import Review from './pages/Review/Review';
 import Search from './pages/Search/Search';
+import SearchResult from './pages/Search/SearchResult';
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/search/result" component={SearchResult} />
       </Switch>
     </BrowserRouter>
   );
