@@ -4,14 +4,12 @@ import { CLOSE } from '../../Contexts/constants';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 
 function Uprasing({ children }) {
-  const [{ y, second, className, backBtnShow }, modalDispatch] =
-    useModalDispatch();
-
+  const [{ y, second, className }, modalDispatch] = useModalDispatch();
   return (
     <Container y={y} second={second} className={className || ''}>
       <Wrapper>
         <BackButton
-          className={backBtnShow || 'none'}
+          className={className === 'show' ? 'none' : ''}
           onClick={() => modalDispatch({ type: CLOSE })}
         >
           ✕
@@ -26,6 +24,7 @@ export default Uprasing;
 const Container = styled.div`
   display: none;
   position: absolute;
+  top: 50px;
   width: 100%;
   height: max-content;
   padding: 0 1rem;
@@ -34,7 +33,7 @@ const Container = styled.div`
   transform: translateY(${({ y }) => y}px);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 999;
+  z-index: 9999;
   &.show {
     display: block;
   }
