@@ -1,8 +1,8 @@
 {
   "prices": {
-    "sunday": 50000,
-    "friday": 60000,
-    "saturday": 70000,
-    "commonDay": 80000
+    "sunday": 0.8,
+    "friday": 0.6,
+    "saturday": 0.5,
+    "commonDay": 1.2
   }
 }

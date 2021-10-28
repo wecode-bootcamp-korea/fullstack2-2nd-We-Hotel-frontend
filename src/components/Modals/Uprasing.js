@@ -3,31 +3,23 @@ import styled from 'styled-components';
 
 function Uprasing({ onCancel, y, second, children, className }) {
   return (
-    <Modal>
-      <Container y={y} second={second} className={className || ''}>
-        <Wrapper>
-          <BackButton onClick={onCancel}>✕</BackButton>
-          {children || null}
-        </Wrapper>
-      </Container>
-    </Modal>
+    <Container y={y} second={second} className={className || ''}>
+      <Wrapper>
+        <BackButton onClick={onCancel}>✕</BackButton>
+        {children || null}
+      </Wrapper>
+    </Container>
   );
 }
-
 export default Uprasing;
 
-const Modal = styled.div`
-  max-width: 768px;
-  margin: 0 auto;
-  background-color: red;
-`;
 const Container = styled.div`
   display: none;
   position: absolute;
   width: 100%;
   height: 100%;
   padding: 0 1rem;
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   transition: all linear ${({ second }) => second}s;
   transform: translateY(${({ y }) => y}px);
   left: 50%;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { NumberCommas } from '../../utils/pakUtils';
 
 const CalendarPresenter = ({
@@ -13,6 +13,7 @@ const CalendarPresenter = ({
   setSelectedDay,
   onDisabledDayError,
 }) => {
+  const theme = useContext(ThemeContext);
   return (
     <Container>
       <Calendar
@@ -22,8 +23,8 @@ const CalendarPresenter = ({
         maximumDate={maximumDate}
         onDisabledDayError={onDisabledDayError}
         minimumDate={minimumDate}
-        colorPrimary={'#6E2C9B'}
-        colorPrimaryLight={'#FDF3FD'}
+        colorPrimary={theme.COLORS['purple-200']}
+        colorPrimaryLight={theme.COLORS['purple-100']}
         value={selectedDay}
         onChange={setSelectedDay}
         shouldHighlightWeekends={true}
@@ -37,12 +38,23 @@ export default CalendarPresenter;
 
 const Container = styled.div`
   ${({ theme }) => theme.MIXINS.FLEX()}
-  font-size: 1rem;
 
   .Calendar {
+    font-size: 1rem;
+
+    .Calendar__day {
+      border-radius: 0.1rem;
+      padding: 1rem;
+    }
+
     button {
       font-family: 'Noto Sans';
+      font-size: 0.8em;
     }
+    span {
+      font-size: 0.8em;
+    }
+
     .saturday:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
       color: ${({ theme }) => theme.COLORS['blue-100']};
     }
@@ -52,7 +64,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = props.children.props.prices['friday'];
+          const price = `${props.children.props.prices.friday * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -63,7 +75,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = props.children.props.prices['saturday'];
+          const price = `${props.children.props.prices.saturday * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -75,7 +87,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = props.children.props.prices['commonDay'];
+          const price = `${props.children.props.prices.commonDay * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -86,35 +98,5 @@ const Container = styled.div`
     border: 1px solid ${({ theme }) => theme.COLORS['gray-100']};
     border-radius: 0.2rem;
     text-decoration: none;
-  }
-
-  @media (min-width: ${({ theme }) => theme.WIDTHS.XXL}px) {
-    .Calendar {
-      font-size: 1.8rem !important;
-    }
-  }
-
-  @media (min-width: ${({ theme }) => theme.WIDTHS.XL}px) {
-    .Calendar {
-      font-size: 1.6rem !important;
-    }
-  }
-
-  @media (min-width: ${({ theme }) => theme.WIDTHS.L}px) {
-    .Calendar {
-      font-size: 1.4rem !important;
-    }
-  }
-
-  @media (min-width: ${({ theme }) => theme.WIDTHS.M}px) {
-    .Calendar {
-      font-size: 1.2rem !important;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.WIDTHS.S}px) {
-    .Calendar {
-      font-size: 1rem !important;
-    }
   }
 `;
