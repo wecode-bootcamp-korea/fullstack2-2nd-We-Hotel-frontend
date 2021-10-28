@@ -10,6 +10,7 @@ import MyDaily from './pages/MyDaily/MyDaily';
 import Review from './pages/Review/Review';
 import Search from './pages/Search/Search';
 import SearchResult from './pages/Search/SearchResult';
+import ReservationDetail from './pages/Reservation/ReservationDetail';
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
         <Route exact path="/review" component={Review} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/search/result" component={SearchResult} />
+        <Route exact path="/reservation/:id" component={ReservationDetail} />
       </Switch>
     </BrowserRouter>
   );
