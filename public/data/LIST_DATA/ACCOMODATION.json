@@ -1,0 +1,244 @@
+{
+  "ACCOMODATION": [
+    {
+      "id": 1,
+      "img": "https://media.istockphoto.com/photos/hotel-reception-lobby-picture-id1292354654?b=1&k=20&m=1292354654&s=170667a&w=0&h=QQElFZr3JeHrxvznzA7suqNo2OGiPVQXJFzZ4A3G3wg=",
+      "grade": "1급",
+      "name": "서울 좋은 Ho텔",
+      "location": "서울 | 강남역 1분거리",
+      "price": "100,000원"
+    },
+    {
+      "id": 2,
+      "img": "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWx8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 최고 호텔",
+      "location": "서울 | 역삼역 2분거리",
+      "price": "200,000원"
+    },
+    {
+      "id": 3,
+      "img": "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 뷰좋은 호텔",
+      "location": "서울 | 사당역 1분거리",
+      "price": "150,000원"
+    },
+    {
+      "id": 4,
+      "img": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 깔끔한 호텔",
+      "location": "서울 | 서울대역 3분거리",
+      "price": "150,000원"
+    },
+    {
+      "id": 5,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 6,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 7,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 8,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 9,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 10,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 11,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 12,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 13,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 14,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 15,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 16,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 17,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 18,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 19,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 20,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 21,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 22,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 23,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 24,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 25,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 26,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 27,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 28,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 29,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    },
+    {
+      "id": 30,
+      "img": "https://images.unsplash.com/photo-1565031491910-e57fac031c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+      "grade": "1급",
+      "name": "서울 감성최고 호텔",
+      "location": "서울 | 종로역 2분거리",
+      "price": "170,000원"
+    }
+  ]
+}

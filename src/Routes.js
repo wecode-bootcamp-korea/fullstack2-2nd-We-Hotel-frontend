@@ -20,7 +20,7 @@ function Router() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/detail" component={Detail} />
-        <Route exact path="/list" component={List} />
+        <Route exact path="/list/:id" component={List} />
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
         <Route exact path="/search" component={Search} />
