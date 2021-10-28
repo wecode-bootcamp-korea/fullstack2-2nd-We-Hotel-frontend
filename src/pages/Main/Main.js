@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import initMockAPI from '../../mocks';
 import Carousel from '../../components/Carousel/Carousel';
 import styled from 'styled-components';
 
@@ -15,7 +16,11 @@ function Main() {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
+    if (process.env.NODE_ENV === 'development') {
+      await initMockAPI();
+    }
+
     loadCarouselItem();
   }, []);
 
