@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "hotel1",
+      "url": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
+    },
+    {
+      "id": 2,
+      "name": "hotel2",
+      "url": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
+    },
+    {
+      "id": 3,
+      "name": "hotel3",
+      "url": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
+    }
+  ]
+}

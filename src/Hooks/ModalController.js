@@ -6,6 +6,7 @@ export function ModalController(props) {
   const [className, setClassName] = useState('');
 
   const onClick = showClass => {
+    window.scrollTo(0, 0);
     setClassName(showClass);
     setSecond(0.2);
     setY(0);

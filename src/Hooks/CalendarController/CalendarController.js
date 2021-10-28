@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   curMilSecond,
   getDateForm,
+  getTodayNextDay,
   now,
   tempDate,
   twoMonthMilSecond,
@@ -12,8 +13,15 @@ import { ROUTES } from '../../utils/constants';
 export const CalendarController = props => {
   const tempDays = [];
   const [days, setDays] = useState([]);
-  const [selectedDay, setSelectedDay] = useState({ from: null, to: null });
   const [prices, setPrices] = useState({});
+  const [selectedDay, setSelectedDay] = useState({
+    from: { day: 1, month: 11, year: 2021 },
+    to: { day: 5, month: 11, year: 2021 },
+  });
+
+  useEffect(() => {
+    setSelectedDay(getTodayNextDay());
+  }, []);
 
   useEffect(() => {
     const getPrice = async () => {
@@ -72,7 +80,7 @@ export const CalendarController = props => {
     day: new Date(curMilSecond + twoMonthMilSecond).getDate(),
   };
 
-  const onDisabledDayError = () => alert('이미 지난 날짜입니다.');
+  const onDisabledDayError = () => alert('선택 할 수 없는 날짜입니다.');
 
   return {
     getDateForm: getDateForm(selectedDay),
