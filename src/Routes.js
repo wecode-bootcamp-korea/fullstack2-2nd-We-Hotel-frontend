@@ -8,6 +8,7 @@ import List from './pages/List/List';
 import Main from './pages/Main/Main';
 import MyDaily from './pages/MyDaily/MyDaily';
 import Review from './pages/Review/Review';
+import Search from './pages/Search/Search';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
         <Route exact path="/list" component={List} />
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
+        <Route exact path="/search" component={Search} />
       </Switch>
     </BrowserRouter>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import initMockAPI from '../../mocks';
 import Carousel from '../../components/Carousel/Carousel';
+import Header from '../../components/Header/Header';
 import styled from 'styled-components';
 
 function Main() {
@@ -26,6 +27,7 @@ function Main() {
 
   return (
     <Container>
+      <Header page="main" />
       <Carousel
         carouselItem={carouselItem}
         type="main"
