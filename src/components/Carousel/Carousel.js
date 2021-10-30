@@ -28,8 +28,8 @@ const Carousel = props => {
         <StyledSlider {...settings}>
           {carouselItem.map(({ id, name, url }) => {
             return (
-              <CardBox>
-                <CardImg key={id} alt={name} src={url} />
+              <CardBox key={id}>
+                <CardImg alt={name} src={url} />
               </CardBox>
             );
           })}
