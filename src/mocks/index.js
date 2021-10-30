@@ -1,10 +1,10 @@
-const initMockAPI = async () => {
+const initMockAPI = () => {
   if (typeof window === 'undefined') {
-    const { server } = await import('./server');
-    server.listen();
+    const { server } = require('./server');
+    return server.listen();
   } else {
-    const { worker } = await import('./browser');
-    worker.start();
+    const { worker } = require('./browser');
+    return worker.start();
   }
 };
 
