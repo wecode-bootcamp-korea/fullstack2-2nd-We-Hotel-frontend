@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import { NumberCommas } from '../../utils/pakUtils';
 
 const CalendarPresenter = ({
@@ -13,8 +13,6 @@ const CalendarPresenter = ({
   setSelectedDay,
   onDisabledDayError,
 }) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <Container>
       <Calendar
@@ -24,8 +22,8 @@ const CalendarPresenter = ({
         maximumDate={maximumDate}
         onDisabledDayError={onDisabledDayError}
         minimumDate={minimumDate}
-        colorPrimary={theme.COLORS['red-200']}
-        colorPrimaryLight={theme.COLORS['red-100']}
+        colorPrimary={'#6E2C9B'}
+        colorPrimaryLight={'#FDF3FD'}
         value={selectedDay}
         onChange={setSelectedDay}
         shouldHighlightWeekends={true}
@@ -42,6 +40,9 @@ const Container = styled.div`
   font-size: 1rem;
 
   .Calendar {
+    button {
+      font-family: 'Noto Sans';
+    }
     .saturday:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
       color: ${({ theme }) => theme.COLORS['blue-100']};
     }

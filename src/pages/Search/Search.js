@@ -6,6 +6,10 @@ import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Header from '../../components/Header/Header';
+import Uprasing from '../../components/Modals/Uprasing';
+import CalendarPresenter from '../../components/Calendar';
+import { CalendarController } from '../../Hooks/CalendarController/CalendarController';
+import { ModalController } from '../../Hooks/ModalController';
 import { searchTags } from './searchTags';
 import { addToStorage } from './addToStorage';
 import { getDateString, getDays } from './getDateInfo';
@@ -37,10 +41,6 @@ function Search() {
     setSearchValue(e.target.value);
   };
 
-  const dateBoxClickHandler = () => {
-    history.push(`/search?value=${searchValue}&date=${term}`);
-  };
-
   const searchBtnHandler = () => {
     if (searchValue.length > 0) {
       addToStorage(searchValue, term);
@@ -64,8 +64,45 @@ function Search() {
     setSearchedInfo(newSearchedInfo);
   };
 
+  const { y, second, onClick, onCancel, className } = ModalController();
+
+  const {
+    prices,
+    days,
+    maximumDate,
+    minimumDate,
+    selectedDay,
+    setSelectedDay,
+    onDisabledDayError,
+    getDateForm,
+  } = CalendarController();
+
+  const btnHandler = () => {
+    console.log(selectedDay);
+    onCancel();
+    setTerm(getDateForm.from + '-' + getDateForm.to);
+  };
+
   return (
     <>
+      <Uprasing
+        onCancel={onCancel}
+        y={y}
+        onClick={onClick}
+        second={second}
+        className={className}
+      >
+        <CalendarPresenter
+          prices={prices}
+          days={days}
+          maximumDate={maximumDate}
+          minimumDate={minimumDate}
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+          onDisabledDayError={onDisabledDayError}
+        />
+        <button onClick={btnHandler}>버튼</button>
+      </Uprasing>
       <Header page="검색" />
       <SearchWrapper>
         <SearchBox className="box">
@@ -75,7 +112,7 @@ function Search() {
             onChange={inputHandler}
           />
         </SearchBox>
-        <DateBox className="box" onClick={dateBoxClickHandler}>
+        <DateBox className="box" onClick={() => onClick('show')}>
           <FontAwesomeIcon icon={faCalendarAlt} className="icon" />
           <span>{term}</span>
         </DateBox>
@@ -179,6 +216,7 @@ const SearchBox = styled.div`
 `;
 
 const DateBox = styled.div`
+  cursor: pointer;
   span {
     font-size: 14px;
     line-height: 18px;
