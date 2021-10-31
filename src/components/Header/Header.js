@@ -62,13 +62,15 @@ const Wrapper = styled.div`
 
 const Page = styled.div`
   padding: 10px 30px 10px 20px;
-  font-size: 19px;
-  font-weight: 600;
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 400;
   text-align: center;
 `;
 
 const Logo = styled.div`
   display: block;
+  margin-top: 2px;
   line-height: 44px;
   font-size: 18px;
   cursor: pointer;
