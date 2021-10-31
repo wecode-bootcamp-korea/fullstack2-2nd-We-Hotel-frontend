@@ -3,8 +3,13 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
 import styled, { ThemeContext } from 'styled-components';
 import { NumberCommas } from '../../utils/pakUtils';
+import { BasicContainer, Message, Title } from '../../styles/pakStyles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { getMonthDay } from '../../pages/Detail/utils';
 
 const CalendarPresenter = ({
+  onCancel,
   prices,
   days,
   maximumDate,
@@ -12,36 +17,106 @@ const CalendarPresenter = ({
   selectedDay,
   setSelectedDay,
   onDisabledDayError,
+  fromDate,
+  toDate,
 }) => {
   const theme = useContext(ThemeContext);
+
   return (
-    <Container>
-      <Calendar
-        prices={prices}
-        calendarTodayClassName="today"
-        calendarClassName="Calendar"
-        maximumDate={maximumDate}
-        onDisabledDayError={onDisabledDayError}
-        minimumDate={minimumDate}
-        colorPrimary={theme.COLORS['purple-200']}
-        colorPrimaryLight={theme.COLORS['purple-100']}
-        value={selectedDay}
-        onChange={setSelectedDay}
-        shouldHighlightWeekends={true}
-        customDaysClassName={days}
-      />
-    </Container>
+    <Wrapper>
+      <BackButton onClick={onCancel}>✕</BackButton>
+      <Header>
+        {fromDate && (
+          <HeadColumn>
+            <DateTitle>체크인</DateTitle>
+            <DateValue>{getMonthDay(fromDate)}</DateValue>
+          </HeadColumn>
+        )}
+
+        {toDate && (
+          <HeadColumn>
+            <Arrow>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Arrow>
+          </HeadColumn>
+        )}
+
+        {toDate && (
+          <HeadColumn>
+            <DateTitle className="rightAligh">체크아웃</DateTitle>
+            <DateValue className="rightAligh">{getMonthDay(toDate)}</DateValue>
+          </HeadColumn>
+        )}
+      </Header>
+      <Container>
+        <Calendar
+          prices={prices}
+          calendarTodayClassName="today"
+          calendarClassName="Calendar"
+          maximumDate={maximumDate}
+          onDisabledDayError={onDisabledDayError}
+          minimumDate={minimumDate}
+          colorPrimary={theme.COLORS['purple-200']}
+          colorPrimaryLight={theme.COLORS['purple-100']}
+          value={selectedDay}
+          onChange={setSelectedDay}
+          shouldHighlightWeekends={true}
+          customDaysClassName={days}
+        />
+      </Container>
+    </Wrapper>
   );
 };
 
 export default CalendarPresenter;
 
-const Container = styled.div`
-  ${({ theme }) => theme.MIXINS.FLEX()}
+const Arrow = styled.span``;
 
+const Header = styled(BasicContainer)`
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+`;
+
+const HeadColumn = styled(BasicContainer)`
+  flex-direction: column;
+
+  .rightAligh {
+    text-align: right;
+  }
+`;
+
+const DateValue = styled(Title)``;
+
+const DateTitle = styled(Message)``;
+
+const Wrapper = styled.div`
+  position: relative;
+  width: min-content;
+  margin: 0 auto;
+`;
+
+const BackButton = styled.button`
+  margin: 0.5rem;
+  border: none;
+  background-color: transparent;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 100;
+
+  :active {
+    opacity: 0.6;
+  }
+`;
+
+const Container = styled.div`
   .Calendar {
     font-size: 1rem;
-
+    border: 1px solid lightgray;
+    border-bottom-style: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: none;
     .Calendar__day {
       border-radius: 0.1rem;
       padding: 1rem;

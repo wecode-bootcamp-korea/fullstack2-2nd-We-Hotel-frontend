@@ -8,7 +8,7 @@ import {
 import { NumberCommas } from '../../../utils/pakUtils';
 import { useHistory } from 'react-router-dom';
 
-const Room = ({ item: { grade, option, price, image } }) => {
+const Room = ({ calPrices, item: { grade, option, price, image, id } }) => {
   const history = useHistory();
   return (
     <Conatiner>
@@ -20,7 +20,11 @@ const Room = ({ item: { grade, option, price, image } }) => {
             <Message>{option}</Message>
           </Wrapper>
           <PriceMessage>
-            <Price>{NumberCommas(price)}</Price>
+            <Price>
+              {calPrices && Object.keys(calPrices).length > 0
+                ? NumberCommas(calPrices[id])
+                : NumberCommas(price)}
+            </Price>
             <PriceSubMessage>원 / 1박</PriceSubMessage>
           </PriceMessage>
         </Column>

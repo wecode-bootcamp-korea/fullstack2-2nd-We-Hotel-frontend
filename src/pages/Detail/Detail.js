@@ -9,6 +9,8 @@ import { BasicButton, Message, Title } from '../../styles/pakStyles';
 import CallBox from './components/CallBox';
 import { useState } from 'react/cjs/react.development';
 import {
+  aGettDistance,
+  getAveragePrice,
   getDistanceDate,
   getFromNowDate,
   getMonthDay,
@@ -22,28 +24,19 @@ import { getDataAllPromise } from '../../utils/pakUtils';
 import Loading from '../../components/Loading/Loading';
 import Room from './components/Room';
 import SelectBtns from './components/SelectBtns';
+import { OPTIONS } from './constants';
 
 function Detail() {
-  const [pickDate, setPickDate] = useState({
-    from: getMonthDay(new Date()),
-    to: getFromNowDate(2),
-  });
+  const {
+    onCancel,
+    y,
+    second,
+    onClick,
+    className,
+    backBtnShow,
+    setBackBtnShow,
+  } = ModalController();
 
-  const [loading, setLoading] = useState(true);
-  const [carouselItem, setCarouselItem] = useState([]);
-  const [hotelInfo, setHotelInfo] = useState([]);
-
-  useEffect(() => {
-    getDataAllPromise({
-      args: [
-        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL },
-        { setFunc: setHotelInfo, url: ROUTES.DETAIL_INFO },
-      ],
-      setLoading,
-    });
-  }, []);
-
-  const { onCancel, y, second, onClick, className } = ModalController();
   const {
     getDateForm,
     prices,
@@ -53,23 +46,67 @@ function Detail() {
     selectedDay,
     setSelectedDay,
     onDisabledDayError,
+    fromDate,
+    toDate,
   } = CalendarController(1);
+
+  const [pickDate, setPickDate] = useState({
+    from: getMonthDay(new Date()),
+    to: getFromNowDate(2),
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [carouselItem, setCarouselItem] = useState([]);
+  const [hotelInfo, setHotelInfo] = useState([]);
+  const [option, setOption] = useState(OPTIONS.ONEDAY);
+
+  const onChange = e => {
+    setOption(e.target.id);
+  };
+
+  useEffect(() => {
+    getDataAllPromise({
+      args: [
+        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL },
+        { setFunc: setHotelInfo, url: ROUTES.DETAIL_INFO },
+      ],
+      setLoading,
+    });
+
+    setBackBtnShow(false);
+  }, []);
+
+  const percents = prices;
+  const roomPrices = hotelInfo[0]?.rooms;
+
+  const calPrices = getAveragePrice({
+    percents,
+    roomPrices,
+    date: getDateForm,
+    option,
+  });
 
   const onPick = () => {
     setCurPickDate({ getDateForm, setFun: setPickDate });
     onCancel();
   };
 
-  // const d = getDistanceDate(getDateForm);
-  // console.log(getDateForm, d);
-
   const theme = useContext(ThemeContext);
   return loading ? (
     <Loading />
   ) : (
     <>
-      <Uprasing onCancel={onCancel} y={y} second={second} className={className}>
+      <Uprasing
+        backBtnShow={backBtnShow}
+        onCancel={onCancel}
+        y={y}
+        second={second}
+        className={className}
+      >
         <CalendarPresenter
+          fromDate={fromDate}
+          toDate={toDate}
+          onCancel={onCancel}
           prices={prices}
           days={days}
           maximumDate={maximumDate}
@@ -78,7 +115,11 @@ function Detail() {
           setSelectedDay={setSelectedDay}
           onDisabledDayError={onDisabledDayError}
         />
-        <MoreBtn onClick={() => onPick()}>선택완료</MoreBtn>
+        <CalendarBtn toDate={toDate} onClick={() => onPick()}>
+          {toDate
+            ? `${aGettDistance({ from: fromDate, to: toDate }) - 1}박 선택완료`
+            : '체크아웃 날짜를 선택해주세요'}
+        </CalendarBtn>
       </Uprasing>
       <Container>
         <Wrapper>
@@ -109,17 +150,20 @@ function Detail() {
             </MainTitle>
             <CallBox
               onClick={() => onClick('show')}
-              text={`${pickDate.from} - ${pickDate.to} ・ ${
-                !getDistanceDate(pickDate)
-                  ? '무'
-                  : `(${getDistanceDate(pickDate)})`
-              }박`}
+              text={
+                toDate &&
+                `${getMonthDay(fromDate)} - ${toDate && getMonthDay(toDate)} •${
+                  aGettDistance({ from: fromDate, to: toDate }) - 1
+                }박`
+              }
             />
           </SectionA>
           <SectionB>
-            <SelectBtns />
+            {getDistanceDate(getDateForm) > 1 && (
+              <SelectBtns option={option} onChange={onChange} />
+            )}
             {hotelInfo[0].rooms.map(item => (
-              <Room key={item.id} item={item} />
+              <Room calPrices={calPrices} key={item.id} item={item} />
             ))}
           </SectionB>
           <MoreBtn>더보기</MoreBtn>
@@ -131,15 +175,32 @@ function Detail() {
 
 export default Detail;
 
-export const MoreBtn = styled(BasicButton)`
+const MoreBtn = styled(BasicButton)`
   width: 80%;
   margin: 1.2rem auto;
   padding: 0.8rem 1rem;
   background-color: ${({ theme }) => theme.COLORS['purple-200']};
   border: 1px solid ${({ theme }) => theme.COLORS['purple-200']};
   border-radius: 4px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: white;
+`;
+
+const CalendarBtn = styled(MoreBtn)`
+  z-index: 101;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  max-width: 150px;
+  transform: translateX(-50%);
+
+  background-color: ${({ theme, toDate }) =>
+    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+  border-color: ${({ theme, toDate }) =>
+    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+  color: ${({ theme, toDate }) =>
+    toDate ? 'white' : theme.COLORS['gray-200']};
+  pointer-events: ${({ toDate }) => toDate || 'none'};
 `;
 
 const MainTitle = styled(Title)`

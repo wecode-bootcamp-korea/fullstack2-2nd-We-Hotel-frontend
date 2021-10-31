@@ -19,6 +19,18 @@ export const CalendarController = props => {
     to: { day: 5, month: 11, year: 2021 },
   });
 
+  const fromDate =
+    selectedDay.from &&
+    new Date(
+      `${selectedDay.from.year}-${selectedDay.from.month}-${selectedDay.from.day}`
+    );
+
+  const toDate =
+    selectedDay.to &&
+    new Date(
+      `${selectedDay.to.year}-${selectedDay.to.month}-${selectedDay.to.day}`
+    );
+
   useEffect(() => {
     setSelectedDay(getTodayNextDay());
   }, []);
@@ -91,5 +103,7 @@ export const CalendarController = props => {
     selectedDay,
     setSelectedDay,
     onDisabledDayError,
+    fromDate,
+    toDate,
   };
 };
