@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Uprasing({ onCancel, y, second, children, className }) {
+function Uprasing({ backBtnShow, onCancel, y, second, children, className }) {
   return (
     <Container y={y} second={second} className={className || ''}>
       <Wrapper>
-        <BackButton onClick={onCancel}>✕</BackButton>
-        {children || null}
+        <BackButton className={backBtnShow || 'none'} onClick={onCancel}>
+          ✕
+        </BackButton>
+        {children && children}
       </Wrapper>
     </Container>
   );
@@ -17,7 +19,7 @@ const Container = styled.div`
   display: none;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: max-content;
   padding: 0 1rem;
   background-color: rgba(255, 255, 255, 1);
   transition: all linear ${({ second }) => second}s;
@@ -31,9 +33,9 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  max-width: 768px;
+  max-width: min-content;
+  position: relative;
   margin: 0 auto;
-  padding: 0 20px;
 `;
 
 const BackButton = styled.button`
@@ -42,6 +44,11 @@ const BackButton = styled.button`
   background-color: transparent;
   font-size: 1.3rem;
   cursor: pointer;
+  z-index: 100;
+
+  &.none {
+    display: none;
+  }
 
   :active {
     opacity: 0.6;

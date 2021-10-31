@@ -1,22 +1,27 @@
 import { useState } from 'react/cjs/react.development';
 import styled from 'styled-components';
 import { BasicContainer } from '../../../styles/pakStyles';
+import { OPTIONS } from '../constants';
 
-const SelectBtns = () => {
-  const [id, setId] = useState('oneDay');
-
-  const onChange = e => {
-    setId(e.target.id);
-  };
-
+const SelectBtns = ({ option, onChange }) => {
   return (
     <Conatiner onChange={onChange}>
-      <input type="radio" value="oneDay" id="oneDay" name="price" />
-      <Label action={id} htmlFor="oneDay">
-        1박 가격
+      <input
+        type="radio"
+        value={OPTIONS.ONEDAY}
+        id={OPTIONS.ONEDAY}
+        name="price"
+      />
+      <Label action={option} htmlFor={OPTIONS.ONEDAY}>
+        1박 평균 가격
       </Label>
-      <input type="radio" value="total" id="total" name="price" />
-      <Label action={id} htmlFor="total">
+      <input
+        type="radio"
+        value={OPTIONS.TOTAL}
+        id={OPTIONS.TOTAL}
+        name="price"
+      />
+      <Label action={option} htmlFor={OPTIONS.TOTAL}>
         총 가격
       </Label>
     </Conatiner>

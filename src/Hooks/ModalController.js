@@ -4,6 +4,7 @@ export function ModalController(props) {
   const [y, setY] = useState(1500);
   const [second, setSecond] = useState(0.2);
   const [className, setClassName] = useState('');
+  const [backBtnShow, setBackBtnShow] = useState(true);
 
   const onClick = showClass => {
     window.scrollTo(0, 0);
@@ -19,6 +20,8 @@ export function ModalController(props) {
   };
 
   return {
+    backBtnShow,
+    setBackBtnShow,
     className,
     onCancel,
     y,
