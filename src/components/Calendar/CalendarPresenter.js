@@ -3,10 +3,15 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
 import styled, { ThemeContext } from 'styled-components';
 import { NumberCommas } from '../../utils/pakUtils';
-import { BasicContainer, Message, Title } from '../../styles/pakStyles';
+import {
+  BasicContainer,
+  Message,
+  MoreBtn,
+  Title,
+} from '../../styles/pakStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getMonthDay } from '../../pages/Detail/utils';
+import { aGettDistance, getMonthDay } from '../../pages/Detail/utils';
 
 const CalendarPresenter = ({
   onCancel,
@@ -64,6 +69,11 @@ const CalendarPresenter = ({
           customDaysClassName={days}
         />
       </Container>
+      <CalendarBtn toDate={toDate} onClick={() => onCancel()}>
+        {toDate
+          ? `${aGettDistance({ from: fromDate, to: toDate })}박 선택완료`
+          : '체크아웃 날짜를 선택해주세요'}
+      </CalendarBtn>
     </Wrapper>
   );
 };
@@ -71,6 +81,23 @@ const CalendarPresenter = ({
 export default CalendarPresenter;
 
 const Arrow = styled.span``;
+
+const CalendarBtn = styled(MoreBtn)`
+  z-index: 101;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  max-width: 230px;
+  transform: translateX(-50%);
+
+  background-color: ${({ theme, toDate }) =>
+    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+  border-color: ${({ theme, toDate }) =>
+    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+  color: ${({ theme, toDate }) =>
+    toDate ? 'white' : theme.COLORS['gray-200']};
+  pointer-events: ${({ toDate }) => toDate || 'none'};
+`;
 
 const Header = styled(BasicContainer)`
   justify-content: space-between;
@@ -130,7 +157,7 @@ const Container = styled.div`
       font-size: 0.8em;
     }
 
-    .saturday:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
+    .blue:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
       color: ${({ theme }) => theme.COLORS['blue-100']};
     }
 

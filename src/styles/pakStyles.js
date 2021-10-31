@@ -73,3 +73,14 @@ export const Message = styled(BasicText)`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.COLORS['gray-200']};
 `;
+
+export const MoreBtn = styled(BasicButton)`
+  width: 80%;
+  margin: 1.2rem auto;
+  padding: 0.8rem 1rem;
+  background-color: ${({ theme }) => theme.COLORS['purple-200']};
+  border: 1px solid ${({ theme }) => theme.COLORS['purple-200']};
+  border-radius: 4px;
+  font-size: 1rem;
+  color: white;
+`;

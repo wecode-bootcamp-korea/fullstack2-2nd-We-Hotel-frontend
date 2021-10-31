@@ -17,9 +17,11 @@ export const aGettDistance = ({ from, to }) => {
     from = to;
     to = tempF;
   }
-  console.log('from', new Date(to));
-  console.log('to', new Date(from));
-  return new Date(to - from).getDate();
+
+  const t = new Date(to.setHours(0, 0, 0, 0));
+  const f = new Date(from.setHours(0, 0, 0, 0));
+
+  return (t - f) / (1000 * 60 * 60 * 24);
 };
 
 export const getDistanceDate = ({ from, to }) => {

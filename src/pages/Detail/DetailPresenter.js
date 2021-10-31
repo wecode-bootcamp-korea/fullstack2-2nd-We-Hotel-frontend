@@ -1,100 +1,43 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { ROUTES } from '../../utils/constants';
 import Carousel from '../../components/Carousel/Carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import Border from '../../components/Border/Border';
-import { BasicButton, Message, Title } from '../../styles/pakStyles';
+import { Message, MoreBtn, Title } from '../../styles/pakStyles';
 import CallBox from './components/CallBox';
-import { useState } from 'react/cjs/react.development';
-import {
-  aGettDistance,
-  getAveragePrice,
-  getDistanceDate,
-  getFromNowDate,
-  getMonthDay,
-  setCurPickDate,
-} from './utils';
-import { ModalController } from '../../Hooks/ModalController';
-import { CalendarController } from '../../Hooks/CalendarController/CalendarController';
+import { aGettDistance, getDistanceDate, getMonthDay } from './utils';
 import Uprasing from '../../components/Modals/Uprasing';
 import CalendarPresenter from '../../components/Calendar/CalendarPresenter';
-import { getDataAllPromise } from '../../utils/pakUtils';
-import Loading from '../../components/Loading/Loading';
 import Room from './components/Room';
 import SelectBtns from './components/SelectBtns';
-import { OPTIONS } from './constants';
+import { useContext } from 'react/cjs/react.development';
 
-function Detail() {
-  const {
-    onCancel,
-    y,
-    second,
-    onClick,
-    className,
-    backBtnShow,
-    setBackBtnShow,
-  } = ModalController();
-
-  const {
-    getDateForm,
-    prices,
-    days,
-    maximumDate,
-    minimumDate,
-    selectedDay,
-    setSelectedDay,
-    onDisabledDayError,
-    fromDate,
-    toDate,
-  } = CalendarController(1);
-
-  const [pickDate, setPickDate] = useState({
-    from: getMonthDay(new Date()),
-    to: getFromNowDate(2),
-  });
-
-  const [loading, setLoading] = useState(true);
-  const [carouselItem, setCarouselItem] = useState([]);
-  const [hotelInfo, setHotelInfo] = useState([]);
-  const [option, setOption] = useState(OPTIONS.ONEDAY);
-
-  const onChange = e => {
-    setOption(e.target.id);
-  };
-
-  useEffect(() => {
-    getDataAllPromise({
-      args: [
-        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL },
-        { setFunc: setHotelInfo, url: ROUTES.DETAIL_INFO },
-      ],
-      setLoading,
-    });
-
-    setBackBtnShow(false);
-  }, []);
-
-  const percents = prices;
-  const roomPrices = hotelInfo[0]?.rooms;
-
-  const calPrices = getAveragePrice({
-    percents,
-    roomPrices,
-    date: getDateForm,
-    option,
-  });
-
-  const onPick = () => {
-    setCurPickDate({ getDateForm, setFun: setPickDate });
-    onCancel();
-  };
-
+function DetailPresenter({
+  onChange,
+  backBtnShow,
+  onCancel,
+  y,
+  second,
+  className,
+  fromDate,
+  toDate,
+  prices,
+  days,
+  maximumDate,
+  minimumDate,
+  selectedDay,
+  setSelectedDay,
+  onDisabledDayError,
+  carouselItem,
+  hotelInfo,
+  onClick,
+  getDateForm,
+  option,
+  calPrices,
+}) {
   const theme = useContext(ThemeContext);
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <>
       <Uprasing
         backBtnShow={backBtnShow}
@@ -115,11 +58,6 @@ function Detail() {
           setSelectedDay={setSelectedDay}
           onDisabledDayError={onDisabledDayError}
         />
-        <CalendarBtn toDate={toDate} onClick={() => onPick()}>
-          {toDate
-            ? `${aGettDistance({ from: fromDate, to: toDate }) - 1}박 선택완료`
-            : '체크아웃 날짜를 선택해주세요'}
-        </CalendarBtn>
       </Uprasing>
       <Container>
         <Wrapper>
@@ -152,9 +90,9 @@ function Detail() {
               onClick={() => onClick('show')}
               text={
                 toDate &&
-                `${getMonthDay(fromDate)} - ${toDate && getMonthDay(toDate)} •${
-                  aGettDistance({ from: fromDate, to: toDate }) - 1
-                }박`
+                `${getMonthDay(fromDate)} - ${
+                  toDate && getMonthDay(toDate)
+                } •${aGettDistance({ from: fromDate, to: toDate })}박`
               }
             />
           </SectionA>
@@ -173,35 +111,7 @@ function Detail() {
   );
 }
 
-export default Detail;
-
-const MoreBtn = styled(BasicButton)`
-  width: 80%;
-  margin: 1.2rem auto;
-  padding: 0.8rem 1rem;
-  background-color: ${({ theme }) => theme.COLORS['purple-200']};
-  border: 1px solid ${({ theme }) => theme.COLORS['purple-200']};
-  border-radius: 4px;
-  font-size: 1rem;
-  color: white;
-`;
-
-const CalendarBtn = styled(MoreBtn)`
-  z-index: 101;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  max-width: 150px;
-  transform: translateX(-50%);
-
-  background-color: ${({ theme, toDate }) =>
-    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
-  border-color: ${({ theme, toDate }) =>
-    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
-  color: ${({ theme, toDate }) =>
-    toDate ? 'white' : theme.COLORS['gray-200']};
-  pointer-events: ${({ toDate }) => toDate || 'none'};
-`;
+export default DetailPresenter;
 
 const MainTitle = styled(Title)`
   font-size: 1.3rem;
