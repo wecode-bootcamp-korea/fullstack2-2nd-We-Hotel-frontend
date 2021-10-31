@@ -1,28 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import qs from 'qs';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Search } from '@styled-icons/boxicons-regular/Search';
 import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading/Loading';
+import List from '../List/List';
+import { getFullDate } from './utils';
+import { API_ENDPOINT } from '../../api';
+import axios from 'axios';
 import styled from 'styled-components';
 
 function SearchResult({ location }) {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   const query = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
+  const { value, startDate, endDate } = query;
+  useEffect(() => {
+    const encodedValue = encodeURI(value);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `${API_ENDPOINT}/list/search?value=${encodedValue}&startDate=${startDate}&endDate=${endDate}`
+        );
+        setData(response);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
 
+  if (loading) return <Loading />;
   return (
     <>
       <Header />
       <Result>
-        <SearchBox className="box">
-          <FontAwesomeIcon icon={faSearch} className="icon" />
-          <span>{query.value}</span>
-          <p>{query.date}</p>
+        <SearchBox>
+          <SearchIcon />
+          <SearchedValue>{value}</SearchedValue>
+          <SearchedTerm>{getFullDate(startDate, endDate)}</SearchedTerm>
         </SearchBox>
         <SearchCount>
-          <h4>결과 0건</h4>
+          <Count>결과 {data.length}건</Count>
         </SearchCount>
-        {/* 리스트페이지에 검색어 전달, query는 encode 필요*/}
+        <List data={data} />
       </Result>
     </>
   );
@@ -46,26 +70,26 @@ const SearchBox = styled.div`
   border-radius: 3px;
   background-color: #f8f8f9;
   font-size: 14px;
+`;
 
-  .icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    margin-top: -8px;
-    width: 16px;
-    height: 16px;
-  }
+const SearchIcon = styled(Search)`
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin-top: -8px;
+  width: 18px;
+  height: 18px;
+`;
 
-  span {
-    font-size: 12px;
-    line-height: 1.17;
-    color: #323232;
-  }
+const SearchedTerm = styled.p`
+  font-size: 11px;
+  color: #888;
+`;
 
-  p {
-    font-size: 11px;
-    color: #888;
-  }
+const SearchedValue = styled.span`
+  font-size: 12px;
+  line-height: 1.17;
+  color: #323232;
 `;
 
 const SearchCount = styled.div`
@@ -73,9 +97,9 @@ const SearchCount = styled.div`
   margin: 0 auto;
   padding: 16px 16px 6px;
   background-color: #f8f8f9;
+`;
 
-  h4 {
-    font-size: 13px;
-    color: #666;
-  }
+const Count = styled.h4`
+  font-size: 13px;
+  color: #666;
 `;
