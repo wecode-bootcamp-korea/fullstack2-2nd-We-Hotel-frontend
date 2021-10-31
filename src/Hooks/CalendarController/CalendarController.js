@@ -33,6 +33,20 @@ export const CalendarController = props => {
 
   useEffect(() => {
     setSelectedDay(getTodayNextDay());
+
+    const tempArr = [];
+    for (let i = 0; i <= 60; i++) {
+      const curDate = new Date(Number(new Date()) + 1000 * 60 * 60 * 24 * i);
+      if (curDate.getDay() === 6) {
+        tempArr.push({
+          year: curDate.getFullYear(),
+          month: curDate.getMonth() + 1,
+          day: curDate.getDate(),
+          className: 'blue',
+        });
+      }
+      setDays(tempArr);
+    }
   }, []);
 
   useEffect(() => {
@@ -44,7 +58,7 @@ export const CalendarController = props => {
           case true:
             const dayMapper = {
               5: curDate => dayMapperFunc(`friday`, curDate),
-              6: curDate => dayMapperFunc(`saturday`, curDate),
+              6: curDate => dayMapperFunc(`saturday blue`, curDate),
               common: curDate => dayMapperFunc(`commonDay`, curDate),
             };
 
