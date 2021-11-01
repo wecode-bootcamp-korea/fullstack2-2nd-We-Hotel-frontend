@@ -15,9 +15,9 @@ const Container = styled.div`
   padding: 1rem;
 
   background-color: ${({ theme, bgColor }) =>
-    bgColor || theme.COLORS['purple-100']};
+    bgColor || theme.colors['purple-100']};
 
-  color: ${({ theme, color }) => color || theme.COLORS['purple-200']};
+  color: ${({ theme, color }) => color || theme.colors['purple-200']};
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -27,7 +27,7 @@ const Container = styled.div`
 
   &:hover {
     opacity: 0.9;
-    border: 1px solid ${({ theme }) => theme.COLORS['purple-100']};
+    border: 1px solid ${({ theme }) => theme.colors['purple-100']};
   }
 
   &:active {

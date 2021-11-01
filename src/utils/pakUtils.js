@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { GETPRICE } from '../Contexts/constants';
 
 export const NumberCommas = val => {
   return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -7,6 +8,10 @@ export const NumberCommas = val => {
 const getData = async ({ setFunc, url }) => {
   try {
     const data = await axios.get(url);
+    if (url.includes('price')) {
+      setFunc({ type: GETPRICE, prices: data.data.prices });
+      return;
+    }
     setFunc(data.data.data);
   } catch (e) {
     console.log(e);

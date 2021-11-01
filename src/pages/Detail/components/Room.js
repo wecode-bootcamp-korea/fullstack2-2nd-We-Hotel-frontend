@@ -41,11 +41,11 @@ const Reserve = styled(BasicButton)`
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   height: fit-content;
-  background-color: ${({ theme }) => theme.COLORS['purple-100']};
+  background-color: ${({ theme }) => theme.colors['purple-100']};
   border: none;
   box-shadow: 0.3px 0.3px 0.5px -1px #e8dcfe;
 
-  color: ${({ theme }) => theme.COLORS['purple-200']};
+  color: ${({ theme }) => theme.colors['purple-200']};
   border-radius: 5px;
 `;
 

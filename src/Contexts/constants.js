@@ -1,7 +1,7 @@
-export const MODAL = 'MODAL';
+export const SHOW = 'show';
+export const CLOSE = 'none';
+export const DISABLEXBTN = 'SHOWXBTN';
 
-export const SHOW = 'SHOW';
-export const CLOSE = 'CLOSE';
-export const SHOWXBTN = 'SHOWXBTN';
-
-export const CALENDAR = 'CALENDAR';
+export const SETDAYS = 'SETDAYS';
+export const SETDATE = 'SETDATE';
+export const GETPRICE = 'GETPRICE';

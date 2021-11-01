@@ -1,4 +1,3 @@
-import { useState } from 'react/cjs/react.development';
 import styled from 'styled-components';
 import { BasicContainer } from '../../../styles/pakStyles';
 import { OPTIONS } from '../constants';
@@ -46,12 +45,12 @@ const Conatiner = styled(BasicContainer)`
 
 const Label = styled.label`
   color: ${({ theme, action, htmlFor }) =>
-    action === htmlFor ? 'black' : theme.COLORS['gray-100']};
+    action === htmlFor ? 'black' : theme.colors['gray-100']};
 
   &:before {
     content: '•';
     color: ${({ theme, action, htmlFor }) =>
-      action === htmlFor ? theme.COLORS['red-200'] : theme.COLORS['red-100']};
+      action === htmlFor ? theme.colors['red-200'] : theme.colors['red-100']};
   }
 `;
 

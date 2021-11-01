@@ -8,16 +8,16 @@
       "rooms": [
         {
           "id": 1,
-          "grade": "디럭스 더블 레이크뷰",
+          "grade": "다락방",
           "option": "초특가 데일리",
-          "price": 60000,
+          "price": 5000,
           "image": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
         },
         {
           "id": 2,
-          "grade": "디럭스 더블 레이크뷰",
+          "grade": "여관방",
           "option": "초특가 데일리",
-          "price": 60000,
+          "price": 18000,
           "image": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
         },
         {
@@ -31,14 +31,14 @@
           "id": 4,
           "grade": "최고그읍~",
           "option": "안깍아줌",
-          "price": 70000,
+          "price": 100000,
           "image": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
         },
         {
           "id": 5,
           "grade": "따뜻한 온돌방",
           "option": "10원깍아줌",
-          "price": 69990,
+          "price": 38900,
           "image": "https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg"
         }
       ]
