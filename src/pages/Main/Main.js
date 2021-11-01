@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Carousel from '../../components/Carousel/Carousel';
 import Header from '../../components/Header/Header';
+import Category from './Category';
 import Footer from '../../components/Footer/Footer.js';
 import Grid from '../../components/Grid/Grid';
 import styled from 'styled-components';
@@ -10,14 +11,17 @@ import styled from 'styled-components';
 function Main({ history }) {
   const [carouselItem, setCarouselItem] = useState([]);
   const [locationItem, setLocationItem] = useState([]);
+  const [categoryItem, setCategoryItem] = useState([]);
 
   useEffect(() => {
     const loadItem = async () => {
       try {
         let resCarousel = await axios.get('/carousel');
         let resLocations = await axios.get('/locations');
+        let resCategory = await axios.get('/category');
         setCarouselItem(resCarousel.data);
         setLocationItem(resLocations.data);
+        setCategoryItem(resCategory.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,6 +38,12 @@ function Main({ history }) {
         type="main"
         width="720"
         height="360"
+      />
+      <Category
+        categoryItem={categoryItem}
+        _onClick={() => {
+          history.push(`/location/{}`);
+        }}
       />
       <Grid
         locationItem={locationItem.seoul}
