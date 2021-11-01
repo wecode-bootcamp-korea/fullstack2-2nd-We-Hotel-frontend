@@ -205,12 +205,40 @@ export const handlers = [
             grade: '비즈니스',
             accommodation: '라마다 속초 호텔',
             image_url:
-              'https://lh3.googleusercontent.com/proxy/9L47sj0iXH9QS4ySL7AR2lshQC7N4xm3P1fRjgM9LkNXKnl5-GC11RHZ_UwlN7i8vZ_EscP0tZCTwp-qJVitLfZC1xl58jf2KV4yQ_frHZkXCl1EuUcB',
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdKl9b28K8nVp_O4Slm6x6YRRwfq36lTJNsA&usqp=CAU',
             price: 330000,
             percentage: 66,
           },
         ],
       }),
+      ctx.status(200),
+      ctx.delay(10)
+    );
+  }),
+  rest.get('/category', (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: 1,
+          locationName: '서울',
+          url: 'https://cdn.dribbble.com/users/2285755/screenshots/5966821/media/3b0872a0af111b610d8b3dba8e8f95b1.png?compress=1&resize=400x300',
+        },
+        {
+          id: 2,
+          locationName: '부산',
+          url: 'https://cdn-icons-png.flaticon.com/512/2090/2090100.png',
+        },
+        {
+          id: 3,
+          locationName: '제주',
+          url: 'https://www.urbanbrush.net/web/wp-content/uploads/edd/2018/10/urbanbrush-20181029095026094622.png',
+        },
+        {
+          id: 4,
+          locationName: '강원',
+          url: 'https://media.istockphoto.com/vectors/bandit-chest-island-pirate-pirates-sailing-line-colored-icon-signs-vector-id1346046107?b=1&k=20&m=1346046107&s=170667a&w=0&h=0WvgAg_IcqcItbMgJI4FLonb3b8qQPgfSHCbO31UX1Q=',
+        },
+      ]),
       ctx.status(200),
       ctx.delay(10)
     );
