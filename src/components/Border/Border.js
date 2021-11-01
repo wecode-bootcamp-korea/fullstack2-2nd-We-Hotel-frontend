@@ -10,5 +10,5 @@ const Container = styled.div`
   width: 100%;
   height: ${({ height }) => height}px;
   margin: ${({ margin }) => margin}px 0;
-  background-color: ${({ theme, color }) => color || theme.COLORS['gray-100']};
+  background-color: ${({ theme, color }) => color || theme.colors['gray-100']};
 `;

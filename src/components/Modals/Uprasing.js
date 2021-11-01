@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { CLOSE } from '../../Contexts/constants';
+import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 
-function Uprasing({ backBtnShow, onCancel, y, second, children, className }) {
+function Uprasing({ children }) {
+  const [{ y, second, className, backBtnShow }, modalDispatch] =
+    useModalDispatch();
+
   return (
     <Container y={y} second={second} className={className || ''}>
       <Wrapper>
-        <BackButton className={backBtnShow || 'none'} onClick={onCancel}>
+        <BackButton
+          className={backBtnShow || 'none'}
+          onClick={() => modalDispatch({ type: CLOSE })}
+        >
           ✕
         </BackButton>
         {children && children}

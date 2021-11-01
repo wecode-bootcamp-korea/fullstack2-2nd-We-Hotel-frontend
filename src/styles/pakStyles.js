@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const theme = {
-  COLORS: {
+  colors: {
     'font-color': '#4D4D4D',
     'red-200': '#DB054A',
     'red-100': '#FEF3F8',
@@ -71,16 +71,23 @@ export const Title = styled(BasicText)`
 export const Message = styled(BasicText)`
   display: inline-block;
   font-size: 0.7rem;
-  color: ${({ theme }) => theme.COLORS['gray-200']};
+  color: ${({ theme }) => theme.colors['gray-200']};
 `;
 
 export const MoreBtn = styled(BasicButton)`
   width: 80%;
   margin: 1.2rem auto;
   padding: 0.8rem 1rem;
-  background-color: ${({ theme }) => theme.COLORS['purple-200']};
-  border: 1px solid ${({ theme }) => theme.COLORS['purple-200']};
+  background-color: ${({ theme }) => theme.colors['purple-200']};
+  border: 1px solid ${({ theme }) => theme.colors['purple-200']};
   border-radius: 4px;
   font-size: 1rem;
   color: white;
+`;
+
+export const MainHeader = styled.div`
+  ${({ theme }) =>
+    theme.MIXINS.FLEX({ direction: 'column', item: 'flex-start' })}
+  padding: 1rem;
+  border-bottom: 1px solid ${({ theme }) => theme.colors['gray-100']};
 `;

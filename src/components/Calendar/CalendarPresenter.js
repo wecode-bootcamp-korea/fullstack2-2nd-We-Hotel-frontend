@@ -9,8 +9,6 @@ import {
   MoreBtn,
   Title,
 } from '../../styles/pakStyles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { aGettDistance, getMonthDay } from '../../pages/Detail/utils';
 
 const CalendarPresenter = ({
@@ -19,11 +17,10 @@ const CalendarPresenter = ({
   days,
   maximumDate,
   minimumDate,
-  selectedDay,
-  setSelectedDay,
-  onDisabledDayError,
   fromDate,
   toDate,
+  selectedDay,
+  setSelectedDay,
 }) => {
   const theme = useContext(ThemeContext);
 
@@ -38,20 +35,22 @@ const CalendarPresenter = ({
           </HeadColumn>
         )}
 
-        {toDate && (
-          <HeadColumn>
-            <Arrow>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </Arrow>
-          </HeadColumn>
-        )}
+        <HeadColumn className="centerColumn">
+          <Arrow className="centerAlign">
+            <img
+              alt={'arrow'}
+              src="https://cdn.dailyhotel.com/ux/ic-calendar-arrow.svg"
+            />
+          </Arrow>
+        </HeadColumn>
 
-        {toDate && (
-          <HeadColumn>
-            <DateTitle className="rightAligh">체크아웃</DateTitle>
-            <DateValue className="rightAligh">{getMonthDay(toDate)}</DateValue>
-          </HeadColumn>
-        )}
+        <HeadColumn>
+          <DateTitle className="rightAlign">체크아웃</DateTitle>
+
+          {toDate && (
+            <DateValue className="rightAlign"> {getMonthDay(toDate)}</DateValue>
+          )}
+        </HeadColumn>
       </Header>
       <Container>
         <Calendar
@@ -59,14 +58,14 @@ const CalendarPresenter = ({
           calendarTodayClassName="today"
           calendarClassName="Calendar"
           maximumDate={maximumDate}
-          onDisabledDayError={onDisabledDayError}
+          onDisabledDayError={() => alert('선택 할 수 없는 날짜입니다.')}
           minimumDate={minimumDate}
-          colorPrimary={theme.COLORS['purple-200']}
-          colorPrimaryLight={theme.COLORS['purple-100']}
-          value={selectedDay}
-          onChange={setSelectedDay}
+          colorPrimary={theme.colors['purple-200']}
+          colorPrimaryLight={theme.colors['purple-100']}
           shouldHighlightWeekends={true}
           customDaysClassName={days}
+          value={selectedDay}
+          onChange={setSelectedDay}
         />
       </Container>
       <CalendarBtn toDate={toDate} onClick={() => onCancel()}>
@@ -80,7 +79,10 @@ const CalendarPresenter = ({
 
 export default CalendarPresenter;
 
-const Arrow = styled.span``;
+const Arrow = styled.span`
+  letter-spacing: 10px;
+  color: ${({ theme }) => theme.colors['gray-100']};
+`;
 
 const CalendarBtn = styled(MoreBtn)`
   z-index: 101;
@@ -91,25 +93,35 @@ const CalendarBtn = styled(MoreBtn)`
   transform: translateX(-50%);
 
   background-color: ${({ theme, toDate }) =>
-    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+    toDate ? theme.colors['purple-200'] : theme.colors['gray-50']};
   border-color: ${({ theme, toDate }) =>
-    toDate ? theme.COLORS['purple-200'] : theme.COLORS['gray-50']};
+    toDate ? theme.colors['purple-200'] : theme.colors['gray-50']};
   color: ${({ theme, toDate }) =>
-    toDate ? 'white' : theme.COLORS['gray-200']};
+    toDate ? 'white' : theme.colors['gray-200']};
   pointer-events: ${({ toDate }) => toDate || 'none'};
 `;
 
 const Header = styled(BasicContainer)`
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid ${({ theme }) => theme.colors['gray-100']};
   padding: 0.5rem;
 `;
 
 const HeadColumn = styled(BasicContainer)`
   flex-direction: column;
 
-  .rightAligh {
+  &.centerColumn {
+    justify-content: flex-end;
+  }
+
+  .rightAlign {
     text-align: right;
+  }
+
+  .centerAlign {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -138,15 +150,13 @@ const BackButton = styled.button`
 
 const Container = styled.div`
   .Calendar {
+    margin-top: -1rem;
     font-size: 1rem;
-    border: 1px solid lightgray;
-    border-bottom-style: none;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-radius: 0.1rem;
+    background-color: transparent;
     box-shadow: none;
     .Calendar__day {
       border-radius: 0.1rem;
-      padding: 1rem;
     }
 
     button {
@@ -158,7 +168,7 @@ const Container = styled.div`
     }
 
     .blue:not(.-selectedStart):not(.-selectedBetween):not(.-selectedEnd):not(.-selected) {
-      color: ${({ theme }) => theme.COLORS['blue-100']};
+      color: ${({ theme }) => theme.colors['blue-100']};
     }
 
     .friday {
@@ -166,7 +176,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = `${props.children.props.prices.friday * 100} %`;
+          const price = `${props.children.props.prices?.friday * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -177,7 +187,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = `${props.children.props.prices.saturday * 100} %`;
+          const price = `${props.children.props.prices?.saturday * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -189,7 +199,7 @@ const Container = styled.div`
       &:after {
         ${({ theme }) => theme.MIXINS.MEMO};
         content: '${props => {
-          const price = `${props.children.props.prices.commonDay * 100} %`;
+          const price = `${props.children.props.prices?.commonDay * 100} %`;
           return price && NumberCommas(price);
         }}';
       }
@@ -197,7 +207,7 @@ const Container = styled.div`
   }
 
   .today {
-    border: 1px solid ${({ theme }) => theme.COLORS['gray-100']};
+    border: 1px solid ${({ theme }) => theme.colors['gray-100']};
     border-radius: 0.2rem;
     text-decoration: none;
   }

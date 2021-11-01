@@ -1,10 +1,10 @@
-import { CLOSE, SHOW, SHOWXBTN } from '../constants';
+import { CLOSE, SHOW, DISABLEXBTN } from '../constants';
 
-export const modalReducer = (state, { type }) => {
+export const modalReducer = (state, { type, backBtnShow = false }) => {
   switch (type) {
     case SHOW:
       return {
-        backBtnShow: state.backBtnShow,
+        backBtnShow,
         y: 0,
         second: 0.2,
         className: SHOW,
@@ -18,7 +18,7 @@ export const modalReducer = (state, { type }) => {
         className: CLOSE,
       };
 
-    case SHOWXBTN:
+    case DISABLEXBTN:
       return {
         backBtnShow: state.backBtnShow,
         y: state.y,
