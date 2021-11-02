@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCompass,
-  faEdit,
-  faFolderOpen,
-} from '@fortawesome/free-regular-svg-icons';
+import { BookOpen } from '@styled-icons/feather/BookOpen';
+import { MapPin } from '@styled-icons/feather/MapPin';
+import { Edit } from '@styled-icons/feather/Edit';
 import styled from 'styled-components';
 
 function ReservationMap({ accomodationId }) {
@@ -20,22 +17,22 @@ function ReservationMap({ accomodationId }) {
         <MapInfoBox>
           <MapInfoTitle>hotel name</MapInfoTitle>
           <MapInfoBtn>
-            <ul>
-              <li>
+            <MapInfoBtn>
+              <Btn>
                 <Link to={`/detail/:${accomodationId}`}>
-                  <FontAwesomeIcon icon={faFolderOpen} className="mapIcon" />
+                  <OpenIcon />
                   <div>상세 정보 보기</div>
                 </Link>
-              </li>
-              <li onClick={notReadyHandler}>
-                <FontAwesomeIcon icon={faCompass} className="mapIcon" />
+              </Btn>
+              <Btn onClick={notReadyHandler}>
+                <MapIcon />
                 <div>길찾기</div>
-              </li>
-              <li onClick={notReadyHandler}>
-                <FontAwesomeIcon icon={faEdit} className="mapIcon" />
+              </Btn>
+              <Btn onClick={notReadyHandler}>
+                <EditIcon />
                 <div>리뷰 입력</div>
-              </li>
-            </ul>
+              </Btn>
+            </MapInfoBtn>
           </MapInfoBtn>
         </MapInfoBox>
       </MapInfo>
@@ -49,18 +46,6 @@ const Map = styled.div`
   position: relative;
   height: 270px;
   background-color: rgb(229, 227, 223);
-
-  a {
-    color: black;
-    text-decoration: none;
-    outline: none;
-
-    &:hover,
-    &:active {
-      text-decoration: none;
-      color: black;
-    }
-  }
 `;
 
 const MapImg = styled.div`
@@ -94,25 +79,35 @@ const MapInfoTitle = styled.div`
   font-weight: 600;
 `;
 
-const MapInfoBtn = styled.div`
-  ul {
-    overflow: hidden;
+const MapInfoBtn = styled.ul`
+  overflow: hidden;
+`;
 
-    li {
-      position: relative;
-      float: left;
-      width: 33.3%;
-      padding: 10px;
-      border-right: 1px solid #f0f0f0;
-      background-color: #fff;
-      font-size: 13px;
-      text-align: center;
+const Btn = styled.li`
+  position: relative;
+  float: left;
+  width: 33.3%;
+  padding: 10px;
+  border-right: 1px solid #f0f0f0;
+  background-color: #fff;
+  font-size: 13px;
+  text-align: center;
+`;
 
-      .mapIcon {
-        width: 18px;
-        height: 18px;
-        margin-bottom: 5px;
-      }
-    }
-  }
+const OpenIcon = styled(BookOpen)`
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+`;
+
+const MapIcon = styled(MapPin)`
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+`;
+
+const EditIcon = styled(Edit)`
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
 `;
