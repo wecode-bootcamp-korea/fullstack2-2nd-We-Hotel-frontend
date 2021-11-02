@@ -7,6 +7,16 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   font-family: 'Noto Sans', sans-serif !important;
+  a {
+    color: black;
+    text-decoration: none;
+    outline: none;
+  }
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 export default GlobalStyle;
