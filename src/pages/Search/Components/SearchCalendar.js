@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Uprasing from '../../../components/Modals/Uprasing';
-import CalendarPresenter from '../../../components/Calendar/CalendarPresenter';
+import Uprasing from '../../../components/Modals/SearchModal';
+import CalendarPresenter from '../../../components/Calendar/SearchCalendar';
 import { CalendarController } from '../../../Hooks/CalendarController/CalendarController';
 
 function SearchCalendar({
