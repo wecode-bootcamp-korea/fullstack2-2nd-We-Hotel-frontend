@@ -74,7 +74,6 @@ export const getAveragePrice = ({
   option,
 }) => {
   if (!percents || !roomPrices || !from || !to) return;
-
   const f = from.split('-').slice(0, 3).join('-');
   const t = to.split('-').slice(0, 3).join('-');
   const a = getDistanceDate({ from: f, to: t });
@@ -107,7 +106,7 @@ export const getAveragePrice = ({
     );
   }
 
-  if (option === OPTIONS.ONEDAY) {
+  if (option === OPTIONS[0].e) {
     for (let key in calPrices) {
       calPrices[key] = Math.round(calPrices[key] / a / 100) * 100;
     }

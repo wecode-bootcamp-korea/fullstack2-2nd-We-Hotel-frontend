@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import { Calendar } from 'react-modern-calendar-datepicker';
 import styled, { ThemeContext } from 'styled-components';
-import { NumberCommas } from '../../utils/pakUtils';
+import { NumberCommas } from '../../utils/commonUtils';
 import {
   BasicContainer,
   Message,
   MoreBtn,
   Title,
-} from '../../styles/pakStyles';
+} from '../../styles/detailStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { aGettDistance, getMonthDay } from '../../pages/Detail/utils';

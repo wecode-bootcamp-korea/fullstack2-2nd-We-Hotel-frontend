@@ -2,7 +2,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import Border from '../../components/Border/Border';
-import { MainHeader, Message, Title } from '../../styles/pakStyles';
+import { MainHeader, Message, Title } from '../../styles/detailStyles';
 
 const DetailMainHeader = ({ hotelInfo }) => {
   return (

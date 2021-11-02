@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { ROUTES } from '../../utils/constants';
 import { useState } from 'react/cjs/react.development';
 import { getAveragePrice } from './utils';
-import { getDataAllPromise } from '../../utils/pakUtils';
+import { getDataAllPromise } from '../../utils/commonUtils';
 import Loading from '../../components/Loading/Loading';
-import { OPTIONS } from './constants';
+import { detailModalId, OPTIONS } from './constants';
 import DetailPresenter from './DetailPresenter';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
-import { DISABLEXBTN, SHOW } from '../../Contexts/constants';
+import { TOGGLEXBTN, TOGGLEMODAL } from '../../Contexts/constants';
 import { useCalendarDispatch } from '../../Contexts/CalendarContext/CalendarContext';
 import { getDateForm } from '../../Hooks/CalendarController/utils';
 
@@ -15,8 +15,8 @@ function Detail() {
   const [loading, setLoading] = useState(true);
   const [carouselItem, setCarouselItem] = useState([]);
   const [hotelInfo, setHotelInfo] = useState([]);
-  const [option, setOption] = useState(OPTIONS.ONEDAY);
-  const [{ className }, modalDispatch] = useModalDispatch();
+  const [option, setOption] = useState(OPTIONS[0].e);
+  const [modalState, modalDispatch] = useModalDispatch();
   const [{ prices, selectedDay }, calendarDispatch] = useCalendarDispatch();
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Detail() {
       setLoading,
     });
 
-    modalDispatch({ type: DISABLEXBTN });
+    modalDispatch({ type: TOGGLEXBTN, id: detailModalId });
   }, []);
 
   const fromDate =
@@ -62,7 +62,7 @@ function Detail() {
 
   const onClick = () => {
     window.scrollTo(0, 0);
-    modalDispatch({ type: SHOW });
+    modalDispatch({ type: TOGGLEMODAL, id: detailModalId });
   };
 
   return loading ? (
@@ -71,7 +71,13 @@ function Detail() {
     <DetailPresenter
       funcs={{ onChange, onClick }}
       dates={{ fromDate, toDate }}
-      states={{ carouselItem, hotelInfo, className, option, calPrices }}
+      states={{
+        carouselItem,
+        hotelInfo,
+        isShow: modalState[detailModalId].isShow,
+        option,
+        calPrices,
+      }}
       getDateForm={getDateForm(selectedDay)}
     />
   );

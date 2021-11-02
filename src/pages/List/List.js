@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { useCalendarDispatch } from '../../Contexts/CalendarContext/CalendarContext';
 import { CalendarContainer } from '../../components/Calendar/CalendarContainer';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
-import { SHOW, DISABLEXBTN } from '../../Contexts/constants';
+import { TOGGLEMODAL, TOGGLEXBTN } from '../../Contexts/constants';
 import Uprasing from '../../components/Modals/Uprasing';
 
 function List({ match }) {
@@ -18,12 +18,12 @@ function List({ match }) {
 
   const onClick = () => {
     window.scrollTo(0, 0);
-    modalDispatch({ type: SHOW });
+    modalDispatch({ type: TOGGLEMODAL });
   };
 
   useEffect(() => {
     getData();
-    modalDispatch({ type: DISABLEXBTN });
+    modalDispatch({ type: TOGGLEXBTN });
   }, []);
 
   const getData = () => {

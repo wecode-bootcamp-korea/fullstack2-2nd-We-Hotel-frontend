@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const theme = {
@@ -90,4 +91,9 @@ export const MainHeader = styled.div`
     theme.MIXINS.FLEX({ direction: 'column', item: 'flex-start' })}
   padding: 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors['gray-100']};
+`;
+
+export const TabIcon = styled(FontAwesomeIcon)`
+  margin: 5px;
+  font-size: 20px;
 `;

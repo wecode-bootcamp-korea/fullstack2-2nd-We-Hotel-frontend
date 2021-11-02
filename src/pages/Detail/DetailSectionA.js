@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainHeader, Message, Title } from '../../styles/pakStyles';
+import { MainHeader, Message, Title } from '../../styles/detailStyles';
 import CallBox from './components/CallBox';
 import { aGettDistance, getMonthDay } from './utils';
 
@@ -10,7 +10,7 @@ const DetailSectionA = ({ fromDate, toDate, onClick }) => {
         객실 선택 <Message>(세금/봉사료 포함)</Message>
       </MainTitle>
       <CallBox
-        onClick={() => onClick('show')}
+        onClick={onClick}
         text={
           toDate &&
           `${getMonthDay(fromDate)} - ${

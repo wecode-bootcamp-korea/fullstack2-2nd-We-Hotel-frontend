@@ -6,10 +6,9 @@ const ModalContextInstance = createContext();
 
 const ModalContext = ({ children }) => {
   const [state, dispatch] = useReducer(modalReducer, {
-    y: 1500,
-    second: 0.2,
-    className: '',
-    backBtnShow: true,
+    modal_1: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
+    modal_2: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
+    modal_3: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
   });
 
   return (

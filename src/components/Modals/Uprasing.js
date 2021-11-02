@@ -1,42 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CLOSE } from '../../Contexts/constants';
+import { TOGGLEMODAL } from '../../Contexts/constants';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 
-function Uprasing({ children }) {
-  const [{ y, second, className }, modalDispatch] = useModalDispatch();
-  return (
-    <Container y={y} second={second} className={className || ''}>
+function Uprasing({ children, id }) {
+  const [modalState, modalDispatch] = useModalDispatch();
+  const { isShow, second, y, backBtnShow } = modalState[id];
+
+  return isShow ? (
+    <Container y={y} second={second}>
       <Wrapper>
-        <BackButton
-          className={className === 'show' ? 'none' : ''}
-          onClick={() => modalDispatch({ type: CLOSE })}
-        >
-          ✕
-        </BackButton>
+        {backBtnShow && (
+          <BackButton onClick={() => modalDispatch({ type: TOGGLEMODAL, id })}>
+            ✕
+          </BackButton>
+        )}
         {children && children}
       </Wrapper>
     </Container>
-  );
+  ) : null;
 }
 export default Uprasing;
 
 const Container = styled.div`
-  display: none;
   position: absolute;
   top: 50px;
   width: 100%;
   height: max-content;
   padding: 0 1rem;
   background-color: rgba(255, 255, 255, 1);
-  transition: all linear ${({ second }) => second}s;
+  transition: all linear ${({ second }) => second};
   transform: translateY(${({ y }) => y}px);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9999;
-  &.show {
-    display: block;
-  }
+  z-index: 999;
 `;
 
 const Wrapper = styled.div`
@@ -52,10 +49,6 @@ const BackButton = styled.button`
   font-size: 1.3rem;
   cursor: pointer;
   z-index: 100;
-
-  &.none {
-    display: none;
-  }
 
   :active {
     opacity: 0.6;

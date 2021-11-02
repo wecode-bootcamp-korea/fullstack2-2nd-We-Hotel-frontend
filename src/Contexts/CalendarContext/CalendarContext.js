@@ -1,14 +1,20 @@
 import { createContext, useReducer } from 'react';
 import { useContext } from 'react/cjs/react.development';
+import { getTodayNextDay } from '../../components/Calendar/utils';
 import { modalReducer } from './CalenderReducer';
 
 const CalendarContextInstance = createContext();
 
 const days = [];
+const selectedDay = getTodayNextDay();
 const CalendarContext = ({ children }) => {
   const [state, dispatch] = useReducer(modalReducer, {
-    selectedDay: {},
-    prices: {},
+    selectedDay,
+    prices: {
+      friday: 0.6,
+      saturday: 0.5,
+      commonDay: 1.2,
+    },
   });
 
   for (let i = 0; i <= 60; i++) {
