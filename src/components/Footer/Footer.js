@@ -107,11 +107,10 @@ const SubContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  position: absolute;
   width: 768px;
   height: 335px;
   padding: 10px 15px 10px 15px;
-  bottom: 44px;
+  bottom: 0;
   background-color: #f5f6fa;
 `;
 
