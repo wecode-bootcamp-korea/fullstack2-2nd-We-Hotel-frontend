@@ -1,3 +1,13 @@
+import React from 'react';
 import DetailContainer from './DetailContainer';
+import TrueReview from './TrueReview';
 
-export default DetailContainer;
+function Detail() {
+  return (
+    <div>
+      <TrueReview trueReview />
+    </div>
+  );
+}
+
+export default Detail;
