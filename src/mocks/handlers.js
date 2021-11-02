@@ -341,4 +341,18 @@ export const handlers = [
       ctx.delay(10)
     );
   }),
+  rest.get('/detail/', (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: 1,
+          accomodation_id: 1,
+          name: '서울 신라호텔',
+          detail_address: '서울특별시 중구 동호로 249',
+        },
+      ]),
+      ctx.status(200),
+      ctx.delay(10)
+    );
+  }),
 ];
