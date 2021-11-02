@@ -3,6 +3,7 @@ import { BookOpen } from '@styled-icons/feather/BookOpen';
 import { Triangle } from '@styled-icons/feather/Triangle';
 
 export const detailModalId = 'modal_1';
+export const mapModalId = 'modal_3';
 
 export const OPTIONS = [
   { e: 'ONEDAY', k: '1박 평균가격' },
