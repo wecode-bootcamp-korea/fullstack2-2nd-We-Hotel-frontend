@@ -1,16 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
-import { curMilSecond, now, tempDate, twoMonthMilSecond } from './utils';
+import {
+  curMilSecond,
+  getTodayNextDay,
+  now,
+  tempDate,
+  twoMonthMilSecond,
+} from './utils';
 import CalendarPresenter from './CalendarPresenter';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
-import { CLOSE, SETDATE } from '../../Contexts/constants';
+import { SETDATE, TOGGLEMODAL } from '../../Contexts/constants';
 import { useCalendarDispatch } from '../../Contexts/CalendarContext/CalendarContext';
-import { getTodayNextDay } from '../../Hooks/CalendarController/utils';
 
-export const CalendarContainer = ({ priceShow = false }) => {
+export const CalendarContainer = ({ priceShow = false, modalId }) => {
   const tempDays = [];
   const [days, setDays] = useState([]);
   const [selectedDay, setSelectedDay] = useState(getTodayNextDay());
-  const [{ prices }, calendarDispatch] = useCalendarDispatch();
+  const [{ prices, selectedDay: globalDate }, calendarDispatch] =
+    useCalendarDispatch();
   const [_, modalDispatch] = useModalDispatch();
 
   useEffect(() => {
@@ -36,6 +42,8 @@ export const CalendarContainer = ({ priceShow = false }) => {
   }, [stableDispatch, selectedDay]);
 
   useEffect(() => {
+    stableDispatch({ type: SETDATE, selectedDay });
+
     const getPrice = async () => {
       switch (priceShow) {
         case true:
@@ -102,7 +110,7 @@ export const CalendarContainer = ({ priceShow = false }) => {
     <CalendarPresenter
       fromDate={fromDate}
       toDate={toDate}
-      onCancel={() => modalDispatch({ type: CLOSE })}
+      onCancel={() => modalDispatch({ type: TOGGLEMODAL, id: modalId })}
       prices={prices}
       days={days}
       maximumDate={maximumDate}

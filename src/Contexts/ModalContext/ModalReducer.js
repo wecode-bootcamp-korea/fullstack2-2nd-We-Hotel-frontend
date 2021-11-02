@@ -1,30 +1,18 @@
-import { CLOSE, SHOW, DISABLEXBTN } from '../constants';
+import { TOGGLEMODAL, TOGGLEXBTN } from '../constants';
+import _ from 'lodash';
 
-export const modalReducer = (state, { type, backBtnShow = false }) => {
+export const modalReducer = (state, { id, type }) => {
+  if (!id) return state;
+  const newObj = _.cloneDeep(state);
   switch (type) {
-    case SHOW:
-      return {
-        backBtnShow,
-        y: 0,
-        second: 0.2,
-        className: SHOW,
-      };
+    case TOGGLEMODAL:
+      newObj[id].isShow = !state[id].isShow;
+      return newObj;
 
-    case CLOSE:
-      return {
-        backBtnShow: state.backBtnShow,
-        y: 1500,
-        second: 0,
-        className: CLOSE,
-      };
+    case TOGGLEXBTN:
+      newObj[id].backBtnShow = !state[id].backBtnShow;
+      return newObj;
 
-    case DISABLEXBTN:
-      return {
-        backBtnShow: state.backBtnShow,
-        y: state.y,
-        second: state.second,
-        className: CLOSE,
-      };
     default:
       break;
   }

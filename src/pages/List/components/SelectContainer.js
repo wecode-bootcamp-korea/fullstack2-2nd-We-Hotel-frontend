@@ -4,7 +4,7 @@ import { CalendarMinus } from '@styled-icons/bootstrap/CalendarMinus';
 import LocationMenu from './Location';
 import styled from 'styled-components';
 import { useModalDispatch } from '../../../Contexts/ModalContext/ModalContext';
-import { SHOW } from '../../../Contexts/constants';
+import { TOGGLEMODAL } from '../../../Contexts/constants';
 
 function SelectContainer({ onClick, selectedDay }) {
   const [isActive, setIsActive] = useState(false);
@@ -22,7 +22,7 @@ function SelectContainer({ onClick, selectedDay }) {
 
   const modalOnClick = () => {
     window.scrollTo(0, 0);
-    modalDispatch({ type: SHOW });
+    modalDispatch({ type: TOGGLEMODAL });
   };
 
   return (

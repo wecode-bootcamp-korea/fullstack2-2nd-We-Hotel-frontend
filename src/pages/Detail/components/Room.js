@@ -4,8 +4,8 @@ import {
   BasicContainer,
   Message,
   Title,
-} from '../../../styles/pakStyles';
-import { NumberCommas } from '../../../utils/pakUtils';
+} from '../../../styles/detailStyles';
+import { NumberCommas } from '../../../utils/commonUtils';
 import { useHistory } from 'react-router-dom';
 
 const Room = ({ calPrices, item: { grade, option, price, image, id } }) => {

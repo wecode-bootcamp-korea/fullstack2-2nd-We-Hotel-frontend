@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Title } from '../../styles/pakStyles';
+import { Title } from '../../styles/detailStyles';
 
 const Loading = () => (
   <Conatiner>

@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import ModalContext from './Contexts/ModalContext';
 import Router from './Routes';
 import GlobalStyle from './styles/GlobalStyle';
-import { theme } from './styles/pakStyles';
+import { theme } from './styles/detailStyles';
 import CalendarContext from './Contexts/CalendarContext/CalendarContext';
 
 function prepare() {

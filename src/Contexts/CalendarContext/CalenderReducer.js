@@ -8,6 +8,7 @@ export const modalReducer = (state, { type, prices, selectedDay }) => {
         selectedDay: state.selectedDay,
       };
     case SETDATE:
+      console.log(111, selectedDay);
       return {
         prices: state.prices,
         selectedDay,

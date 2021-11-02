@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { MainHeader } from '../../styles/pakStyles';
+import { MainHeader } from '../../styles/detailStyles';
 import Room from './components/Room';
-import SelectBtns from './components/SelectBtns';
+import { OPTIONS } from './constants';
 import { getDistanceDate } from './utils';
+import RadioBtns from './DetailRadioBtns';
 
 const DetailSectionB = ({
   hotelInfo,
@@ -14,7 +15,12 @@ const DetailSectionB = ({
   return (
     <SectionB>
       {getDistanceDate(getDateForm) > 1 && (
-        <SelectBtns option={option} onChange={onChange} />
+        <RadioBtns
+          option={option}
+          onChange={onChange}
+          btnNames={OPTIONS}
+          name={'option'}
+        />
       )}
       {hotelInfo[0].rooms.map(item => (
         <Room calPrices={calPrices} key={item.id} item={item} />
