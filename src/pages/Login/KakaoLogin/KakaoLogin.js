@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import KAKAO_AUTH_URL from './OAuth';
 import styled from 'styled-components';
 
 const { Kakao } = window;
@@ -39,38 +38,37 @@ function KakaoLogin({ maintainLogin }) {
     });
   };
   return (
-    <Button href={KAKAO_AUTH_URL}>
-      <button onClick={kakaoLoginClickHandler}>
-        <img
-          src="https://cdn.dailyhotel.com/ux/login-ic-sns-kakao.svg"
-          alt="kakao"
-        />
-        카카오로 시작하기
-      </button>
-    </Button>
+    <LoginButton
+      href={process.env.REACT_APP_KAKAO_AUTH_URL}
+      onClick={kakaoLoginClickHandler}
+    >
+      <KakaoIcon
+        src="https://cdn.dailyhotel.com/ux/login-ic-sns-kakao.svg"
+        alt="kakao"
+      />
+      카카오로 시작하기
+    </LoginButton>
   );
 }
 
 export default KakaoLogin;
 
-const Button = styled.div`
-  button {
-    position: relative;
-    width: 100%;
-    padding: 12px 22px;
-    color: #3d2221;
-    background-color: #ffeb00;
-    border: 0;
-    font-size: 16px;
-    border-radius: 3px;
-    line-height: 16px;
-    font-weight: 500;
+const LoginButton = styled.button`
+  position: relative;
+  width: 100%;
+  padding: 12px 22px;
+  color: #3d2221;
+  background-color: #ffeb00;
+  border: 0;
+  font-size: 16px;
+  border-radius: 3px;
+  line-height: 16px;
+  font-weight: 500;
+`;
 
-    img {
-      position: absolute;
-      left: 15px;
-      height: 20px;
-      margin-top: -2px;
-    }
-  }
+const KakaoIcon = styled.img`
+  position: absolute;
+  left: 15px;
+  height: 20px;
+  margin-top: -2px;
 `;

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import ShortPath from './ShortPath';
+import { Search } from '@styled-icons/bootstrap/Search';
+import { Menu3 } from '@styled-icons/remix-line/Menu3';
+import ShortPath from './Components/ShortPath';
 import styled from 'styled-components';
 
 function Header({ page }) {
@@ -20,9 +19,9 @@ function Header({ page }) {
       {page !== 'main' && <Page>{page}</Page>}
       <Icons>
         <Link to="search">
-          <FontAwesomeIcon icon={faSearch} size="lg" />
+          <SearchIcon />
         </Link>
-        <FontAwesomeIcon icon={faBars} size="lg" onClick={barIconHandler} />
+        <BarIcon onClick={barIconHandler} />
       </Icons>
       {barClicked && (
         <ShortPath setBarClicked={setBarClicked} barClicked={barClicked} />
@@ -48,20 +47,10 @@ const Wrapper = styled.div`
   background: white;
   border-bottom: 1px solid rgb(240, 240, 240);
   z-index: 10;
-  a {
-    color: black;
-    text-decoration: none;
-    outline: none;
-  }
-  a:hover,
-  a:active {
-    text-decoration: none;
-    color: black;
-  }
 `;
 
 const Page = styled.div`
-  padding: 10px 30px 10px 20px;
+  padding: 10px 50px 10px 10px;
   margin-top: 2px;
   font-size: 16px;
   font-weight: 400;
@@ -69,16 +58,25 @@ const Page = styled.div`
 `;
 
 const Logo = styled.div`
-  display: block;
-  margin-top: 2px;
+  margin-top: 4px;
+  color: #474747;
   line-height: 44px;
-  font-size: 18px;
+  font-size: 22px;
+  font-weight: 700;
   cursor: pointer;
 `;
 
 const Icons = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 55px;
+  width: 60px;
   cursor: pointer;
+`;
+
+const SearchIcon = styled(Search)`
+  width: 20px;
+`;
+
+const BarIcon = styled(Menu3)`
+  width: 24px;
 `;

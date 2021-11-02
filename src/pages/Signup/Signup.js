@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import SignupForm from './SignupForm';
-import { autoHypenBirthday } from './autoHypenBirthday';
+import SignupForm from './Components/SignupForm';
+import { autoHypenBirthday } from './utils';
 import styled from 'styled-components';
 
 function Signup({ location }) {
@@ -9,9 +9,9 @@ function Signup({ location }) {
 
   // const res = location.props;
   const [inputs, setInputs] = useState({
-    name: null,
-    phoneNumber: null,
-    birthday: null,
+    name: '',
+    phoneNumber: '',
+    birthday: '',
   });
   const [isNameValid, setIsNameValid] = useState(false);
   const [isBirthdayValid, setIsBirthdayValid] = useState(false);
@@ -19,32 +19,49 @@ function Signup({ location }) {
 
   const { name, phoneNumber, birthday } = inputs;
 
-  const onChange = e => {
-    const { name, value } = e.target;
-    if (name === 'birthday') {
-      let birthdayWithHypen = autoHypenBirthday(e.target.value);
-      setInputs({
-        ...inputs,
-        birthday: birthdayWithHypen,
-      });
-    } else {
-      setInputs({
-        ...inputs,
-        [name]: value,
-      });
-    }
+  const birthdayChangeHandler = e => {
+    const { value } = e.target;
+    let birthdayWithHypen = autoHypenBirthday(value);
+    setInputs({
+      ...inputs,
+      birthday: birthdayWithHypen,
+    });
+  };
+
+  const nameChangeHandler = e => {
+    const { value } = e.target;
+    const notKorean = /[a-z0-9]|[[\]{}()<>?|`~!@#$%^&*-_+=,.;:"'\\]/g;
+    const nameWithOnlyKorean = value.replace(notKorean, '');
+    setInputs({
+      ...inputs,
+      name: nameWithOnlyKorean,
+    });
+  };
+
+  const phoneNumberChangeHandler = e => {
+    const { value } = e.target;
+    const numberOnly = value.replace(/[^0-9]/g, '');
+    setInputs({
+      ...inputs,
+      phoneNumber: numberOnly,
+    });
+  };
+
+  const validation = {
+    name: /^[가-힣]{2,4}$/,
+    phoneNumber: /^[0-9\b -]{11}$/,
+    birthday:
+      /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
   };
 
   useEffect(() => {
-    /^[가-힣]{2,4}$/.exec(inputs.name)
+    validation.name.exec(inputs.name)
       ? setIsNameValid(true)
       : setIsNameValid(false);
-    /^[0-9\b -]{11}$/.exec(inputs.phoneNumber)
+    validation.phoneNumber.exec(inputs.phoneNumber)
       ? setIsPhoneNumberValid(true)
       : setIsPhoneNumberValid(false);
-    /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/.exec(
-      inputs.birthday
-    )
+    validation.birthday.exec(inputs.birthday)
       ? setIsBirthdayValid(true)
       : setIsBirthdayValid(false);
   }, [inputs]);
@@ -69,24 +86,24 @@ function Signup({ location }) {
 
   return (
     <Wrapper>
-      <Title>
-        <span>회원 가입</span>
-      </Title>
+      <SignupHeader>
+        <HeaderTitle>회원 가입</HeaderTitle>
+      </SignupHeader>
       <SignupWrapper>
-        <div className="signupHead">
-          <p>
+        <DescriptionWrapper>
+          <Description>
             위호텔 회원이 되시면
             <br />
             다양한 혜택을 드립니다.
-          </p>
-        </div>
+          </Description>
+        </DescriptionWrapper>
         <SignupForm
           title="NAME"
           name="name"
           type="text"
           value={name}
           description={!isNameValid && '2-4자의 한글 이름을 입력해주세요'}
-          onChange={onChange}
+          onChange={nameChangeHandler}
         />
         <SignupForm
           title="BIRTHDAY"
@@ -94,7 +111,7 @@ function Signup({ location }) {
           type="text"
           value={birthday}
           description={!isBirthdayValid && 'YYYYMMDD 생일을 입력해주세요'}
-          onChange={onChange}
+          onChange={birthdayChangeHandler}
         />
         <SignupForm
           title="PHONE NUMBER"
@@ -104,12 +121,10 @@ function Signup({ location }) {
           description={
             !isPhoneNumberValid && '휴대폰 번호을 입력해주세요( - 제외)'
           }
-          onChange={onChange}
+          onChange={phoneNumberChangeHandler}
         />
-        <Submit>
-          <button onClick={signupButtonClickHandler} type="submit">
-            회원 가입
-          </button>
+        <Submit onClick={signupButtonClickHandler} type="submit">
+          회원 가입
         </Submit>
       </SignupWrapper>
     </Wrapper>
@@ -123,7 +138,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Title = styled.div`
+const SignupHeader = styled.div`
   position: absolute;
   max-width: 768px;
   margin: 0 auto;
@@ -132,51 +147,44 @@ const Title = styled.div`
   height: 45px;
   padding: 11px 96px;
   text-align: center;
+`;
 
-  span {
-    display: block;
-    color: rgb(77, 77, 77);
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 22px;
-  }
+const HeaderTitle = styled.div`
+  color: rgb(77, 77, 77);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
 `;
 
 const SignupWrapper = styled.div`
   padding: 0 20px;
-
-  .signupHead {
-    padding: 70px 0px 30px;
-
-    p {
-      padding: 45px 0px;
-      color: rgb(17, 17, 17);
-      line-height: 1.4em;
-      font-size: 25px;
-      font-weight: 100;
-      letter-spacing: -3px;
-    }
-  }
 `;
 
-const Submit = styled.div`
-  padding-bottom: 33px;
+const DescriptionWrapper = styled.div`
+  padding: 70px 0px 30px;
+`;
 
-  button {
-    display: inline-block;
-    vertical-align: baseline;
-    width: 100%;
-    margin: 20px 0;
-    padding: 12px 22px;
-    color: #fff;
-    background-color: #6e2c9b;
-    outline: none;
-    border: none;
-    border-radius: 3px;
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1em;
-    text-align: center;
-    cursor: pointer;
-  }
+const Description = styled.p`
+  padding: 45px 0px;
+  color: rgb(17, 17, 17);
+  line-height: 1.4em;
+  font-size: 25px;
+  font-weight: 100;
+  letter-spacing: -3px;
+`;
+
+const Submit = styled.button`
+  width: 100%;
+  margin: 40px 0;
+  padding: 12px 22px;
+  color: #fff;
+  background-color: #6e2c9b;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1em;
+  text-align: center;
+  cursor: pointer;
 `;
