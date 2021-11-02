@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { TOGGLEMODAL } from '../../Contexts/constants';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 
-function Uprasing({ children, id }) {
+function ReviewModal({ children, id }) {
   const [modalState, modalDispatch] = useModalDispatch();
   const { isShow, second, y, backBtnShow } = modalState[id];
+
   return isShow ? (
     <Container y={y} second={second}>
       <Wrapper>
@@ -19,17 +20,17 @@ function Uprasing({ children, id }) {
     </Container>
   ) : null;
 }
-export default Uprasing;
+export default ReviewModal;
 
 const Container = styled.div`
-  position: fixed;
-  top: 50px;
+  position: absolute;
+  top: 740px;
   width: 100%;
   height: max-content;
-  padding: 0 1rem;
   background-color: rgba(255, 255, 255, 1);
-  transition: all linear ${({ second }) => second}s;
+  transition: all linear ${({ second }) => second};
   transform: translateY(${({ y }) => y}px);
+  transform: translateY(10px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;

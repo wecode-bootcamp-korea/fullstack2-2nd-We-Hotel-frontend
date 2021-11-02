@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
@@ -91,7 +92,9 @@ const Carousel = props => {
                     <UsedRoomType>{roomsName}</UsedRoomType>
                     <ReviewWrap>
                       <Review>{textTrim(review_content, 120)}</Review>
-                      <MoreReview onClick="">더보기</MoreReview>
+                      <Link to="/review">
+                        <MoreReview>더보기</MoreReview>
+                      </Link>
                     </ReviewWrap>
                   </ContentInner>
                 </ContentWrap>
@@ -103,7 +106,9 @@ const Carousel = props => {
               <NextReviewWrap>
                 <NextButton>→</NextButton>
                 <ReviewCount>{carouselItem.length}개의 리뷰</ReviewCount>
-                <MoreReviewBtn onClick="">더보기</MoreReviewBtn>
+                <Link to="/review">
+                  <MoreReviewBtn>더보기</MoreReviewBtn>
+                </Link>
               </NextReviewWrap>
             </ContentInner>
           </ContentWrap>

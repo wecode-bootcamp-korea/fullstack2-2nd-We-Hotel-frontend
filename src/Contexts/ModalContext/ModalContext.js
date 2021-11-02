@@ -8,8 +8,8 @@ const ModalContext = ({ children }) => {
   const [state, dispatch] = useReducer(modalReducer, {
     modal_1: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
     modal_2: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
-    modal_3: { isShow: false, y: 1500, second: 0.2, backBtnShow: false },
-    modal_4: { isShow: false, y: 1500, second: 0.2, backBtnShow: false },
+    modal_3: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
+    modal_4: { isShow: false, y: 300, second: 3, backBtnShow: false },
   });
 
   return (

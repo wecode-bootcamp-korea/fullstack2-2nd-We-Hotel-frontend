@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Carousel from '../../components/Carousel/Carousel';
 
@@ -29,12 +30,14 @@ const TrueReview = props => {
           <Carousel type="review" carouselItem={carouselItem} />
         </ReviewContentWrap>
         <MoreReviewWrap>
-          <MoreReview>{reviewTotalCount}개 리뷰 더보기</MoreReview>
+          <Link to="/review">
+            <MoreReview>{reviewTotalCount}개 리뷰 더보기</MoreReview>
+          </Link>
         </MoreReviewWrap>
       </TrueReviewContainer>
     );
   } else {
-    return <div>로딩중</div>;
+    return;
   }
 };
 

@@ -4,6 +4,7 @@ import { Triangle } from '@styled-icons/feather/Triangle';
 
 export const detailModalId = 'modal_1';
 export const mapModalId = 'modal_3';
+export const reviewModalId = 'modal_4';
 
 export const OPTIONS = [
   { e: 'ONEDAY', k: '1박 평균가격' },
