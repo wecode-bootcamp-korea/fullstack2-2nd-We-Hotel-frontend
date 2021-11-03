@@ -29,7 +29,7 @@ const Container = styled.div`
   height: max-content;
   padding: 0 1rem;
   background-color: rgba(255, 255, 255, 1);
-  transition: all linear ${({ second }) => second};
+  transition: all linear ${({ second }) => second}s;
   transform: translateY(${({ y }) => y}px);
   left: 50%;
   transform: translateX(-50%);

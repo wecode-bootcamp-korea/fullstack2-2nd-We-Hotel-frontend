@@ -4,14 +4,18 @@ import { TABNAME } from '../Detail/constants';
 import { BasicContainer } from '../../styles/detailStyles';
 import RadioBtn from '../../components/RadioBtn/RadioBtn';
 import { withRouter } from 'react-router';
+import { NOTABROUTE } from '../../utils/constants';
 
 const TabNavigation = ({ history }) => {
   const [tabBtns, setTabBtns] = useState(TABNAME[0].e);
+
+  const { pathname } = history.location;
+
   const onChange = e => {
     setTabBtns(e.target.id);
   };
-  return !history.location.pathname.includes('detail') &&
-    !history.location.pathname.includes('search') ? (
+
+  return NOTABROUTE.every(val => !pathname.includes(val)) ? (
     <Container onChange={onChange}>
       {TABNAME.map((btnName, i) => (
         <RadioBtn key={i} name={'tabBtn'} btnName={btnName} option={tabBtns} />
@@ -19,6 +23,7 @@ const TabNavigation = ({ history }) => {
     </Container>
   ) : null;
 };
+
 export default withRouter(TabNavigation);
 
 const Container = styled(BasicContainer)`
@@ -31,7 +36,7 @@ const Container = styled(BasicContainer)`
   display: grid;
   place-items: center center;
   min-width: 768px;
-  padding: 0.5rem 3rem;
+  padding: 0.5rem 3.5rem;
   background-color: white;
   border-top: 1px solid ${({ theme }) => theme.colors['gray-100']};
   z-index: 99911;

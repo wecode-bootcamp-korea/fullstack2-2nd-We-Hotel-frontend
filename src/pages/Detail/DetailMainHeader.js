@@ -1,8 +1,7 @@
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import Border from '../../components/Border/Border';
 import { MainHeader, Message, Title } from '../../styles/detailStyles';
+import { ThumbsUp } from '@styled-icons/fa-regular/ThumbsUp';
 
 const DetailMainHeader = ({ hotelInfo }) => {
   return (
@@ -10,7 +9,7 @@ const DetailMainHeader = ({ hotelInfo }) => {
       <Message>{hotelInfo[0].grade}</Message>
       <Title>{hotelInfo[0].title}</Title>
       <Message>
-        <ThumbIconItem className="thumbIcon" icon={faThumbsUp} />
+        <ThumbIconItem />
         <LikeCount>{hotelInfo[0].likeCount}</LikeCount>
         <LikeMessage>명이 좋아합니다 </LikeMessage>
       </Message>
@@ -22,10 +21,11 @@ const DetailMainHeader = ({ hotelInfo }) => {
 
 export default DetailMainHeader;
 
-const ThumbIconItem = styled(FontAwesomeIcon)`
+const ThumbIconItem = styled(ThumbsUp)`
   margin-right: 0.2rem;
+  margin-bottom: 0.5rem;
+  width: 1.1rem;
   color: ${({ theme }) => theme.colors['blue-100']};
-  font-size: 0.9rem;
   cursor: pointer;
 `;
 

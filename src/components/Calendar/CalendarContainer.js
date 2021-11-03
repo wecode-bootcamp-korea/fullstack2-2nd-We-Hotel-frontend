@@ -42,8 +42,6 @@ export const CalendarContainer = ({ priceShow = false, modalId }) => {
   }, [stableDispatch, selectedDay]);
 
   useEffect(() => {
-    stableDispatch({ type: SETDATE, selectedDay });
-
     const getPrice = async () => {
       switch (priceShow) {
         case true:
