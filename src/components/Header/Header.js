@@ -52,7 +52,7 @@ const Wrapper = styled.div`
 const Page = styled.div`
   padding: 10px 50px 10px 10px;
   margin-top: 2px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   text-align: center;
 `;
