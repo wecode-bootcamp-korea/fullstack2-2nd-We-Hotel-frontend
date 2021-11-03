@@ -1,6 +1,6 @@
-import { faPhabricator } from '@fortawesome/free-brands-svg-icons';
-import { faBook, faHome } from '@fortawesome/free-solid-svg-icons';
-import { TabIcon } from '../../styles/detailStyles';
+import { HomeAlt } from '@styled-icons/boxicons-regular/HomeAlt';
+import { BookOpen } from '@styled-icons/feather/BookOpen';
+import { Triangle } from '@styled-icons/feather/Triangle';
 
 export const detailModalId = 'modal_1';
 
@@ -10,17 +10,17 @@ export const OPTIONS = [
 ];
 
 export const TABNAME = [
-  { e: 'HOME', k: '홈', i: <TabIcon icon={faHome} />, a: '/' },
+  { e: 'HOME', k: '홈', i: <HomeAlt />, a: '/' },
   {
     e: 'RESVERSATION',
     k: '예약/구매내역',
-    i: <TabIcon icon={faBook} />,
+    i: <BookOpen />,
     a: '/reservation',
   },
   {
     e: 'MYDAILY',
     k: '마이데일리',
-    i: <TabIcon icon={faPhabricator} />,
+    i: <Triangle />,
     a: '/mydaily',
   },
 ];

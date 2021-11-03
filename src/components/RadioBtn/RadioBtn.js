@@ -42,10 +42,11 @@ const Label = styled.label`
 
   &:before,
   svg {
+    width: 30px;
     color: ${({ theme, action, htmlFor }) => {
       return action === htmlFor
-        ? theme.colors['red-200']
-        : theme.colors['red-100'];
+        ? theme.colors['purple-200']
+        : theme.colors['purple-100'];
     }};
   }
 `;

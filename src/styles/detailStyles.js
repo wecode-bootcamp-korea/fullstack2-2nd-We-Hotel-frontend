@@ -92,8 +92,3 @@ export const MainHeader = styled.div`
   padding: 1rem;
   border-bottom: 1px solid ${({ theme }) => theme.colors['gray-100']};
 `;
-
-export const TabIcon = styled(FontAwesomeIcon)`
-  margin: 5px;
-  font-size: 20px;
-`;
