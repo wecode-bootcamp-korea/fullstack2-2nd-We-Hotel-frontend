@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: black;
   }
+  min-width: 320px;
 `;
 
 export default GlobalStyle;

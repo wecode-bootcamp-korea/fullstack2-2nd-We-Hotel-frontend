@@ -118,4 +118,5 @@ const MainFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 58px;
 `;

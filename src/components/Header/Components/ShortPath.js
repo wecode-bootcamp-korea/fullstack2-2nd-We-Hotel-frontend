@@ -44,7 +44,9 @@ function ShortPath({ setBarClicked, barClicked }) {
               </UserInfoSub>
             </UserInfo>
             <Link to={isUser ? '/mydaily' : '/login'}>
-              <Button>{isUser ? '내 정보수정' : '로그인'}</Button>
+              <ButtonWrapper>
+                <Button>{isUser ? '내 정보수정' : '로그인'}</Button>
+              </ButtonWrapper>
             </Link>
           </div>
         </Login>
@@ -74,7 +76,6 @@ const Wrapper = styled.div`
   top: -1px;
   right: -1px;
   max-width: 768px;
-  margin: 0 auto;
   padding: 0px 0px 8px;
   background-color: white;
   border: 1px solid rgb(231, 231, 231);
@@ -105,6 +106,9 @@ const UserInfoSub = styled.div`
 
 const UserInfo = styled.p`
   padding: 16px 16px 12px;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
 `;
 
 const Button = styled.button`

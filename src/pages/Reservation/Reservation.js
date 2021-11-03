@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
-import ReservationDataList from './ReservationDataList';
-import ReservationListNone from './ReservationListNone';
+import ReservationDataList from './Components/ReservationDataList';
+import ReservationListNone from './Components/ReservationListNone';
 import styled from 'styled-components';
 
 function Reservation() {
@@ -37,33 +37,37 @@ function Reservation() {
               showHandler('expected');
             }}
           >
-            이용예정 {expectedClicked && <UnderLine />}
+            이용예정
+            <UnderLine clicked={expectedClicked} />
           </UseScheduled>
-          <UseComplete
+          <UseScheduled
             bold={completedClicked && 'bold'}
             onClick={() => {
               showHandler('completed');
             }}
           >
-            이용완료{completedClicked && <UnderLine />}
-          </UseComplete>
+            이용완료
+            <UnderLine clicked={completedClicked} />
+          </UseScheduled>
         </SelectReservation>
-        {expectedClicked &&
-          (expectedList.length > 0 ? (
-            expectedList.map((data, id) => {
-              return <ReservationDataList key={id} data={data} />;
-            })
-          ) : (
-            <ReservationListNone />
-          ))}
-        {completedClicked &&
-          (completedList.length > 0 ? (
-            completedList.map((data, id) => {
-              return <ReservationDataList key={id} data={data} />;
-            })
-          ) : (
-            <ReservationListNone />
-          ))}
+        <List>
+          {expectedClicked &&
+            (expectedList.length > 0 ? (
+              expectedList.map((data, id) => {
+                return <ReservationDataList key={id} data={data} />;
+              })
+            ) : (
+              <ReservationListNone />
+            ))}
+          {completedClicked &&
+            (completedList.length > 0 ? (
+              completedList.map((data, id) => {
+                return <ReservationDataList key={id} data={data} />;
+              })
+            ) : (
+              <ReservationListNone />
+            ))}
+        </List>
       </ReservationBox>
     </>
   );
@@ -71,29 +75,30 @@ function Reservation() {
 
 export default Reservation;
 
+const List = styled.div`
+  width: 100%;
+  padding: 16px 16px 80px;
+  background-color: rgb(240, 240, 240);
+`;
+
 const UnderLine = styled.div`
-  margin-top: 5px;
-  border-top: solid 3px #6e2c9b;
+  margin-top: 13px;
+  border-top: solid 3px ${props => (props.clicked ? '#6e2c9b' : '#ffffff')};
 `;
 
 const UseScheduled = styled.div`
-  font-size: 13px;
-  font-weight: ${props => props.bold};
+  padding: 20px 20px 0;
   color: #6e2c9b;
-  padding: 20px 100px 20px 100px;
-`;
-
-const UseComplete = styled.div`
-  font-size: 13px;
-  color: #6e2c9b;
-  padding: 20px 100px 20px 100px;
+  font-size: 12px;
+  line-height: 8px;
   font-weight: ${props => props.bold};
 `;
 
 const SelectReservation = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  width: 100%;
 `;
 
 const ReservationBox = styled.section`
