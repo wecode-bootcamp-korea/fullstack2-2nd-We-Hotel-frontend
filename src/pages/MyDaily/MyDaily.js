@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../../components/Header/Header';
 import UserPage from './components/UserPage';
 import NotUserPage from './components/NotUserPage';
+import styled from 'styled-components';
 
 function MyDaily() {
   const [data, setData] = useState([]);
@@ -15,15 +17,25 @@ function MyDaily() {
 
   return (
     <>
-      {token ? (
-        data.map((element, id) => {
-          return <UserPage key={id} data={element} />;
-        })
-      ) : (
-        <NotUserPage />
-      )}
+      <Header page={'마이데일리'} />
+      <MainMyDaily>
+        {!token ? (
+          data.map((element, id) => {
+            return <UserPage key={id} data={element} />;
+          })
+        ) : (
+          <NotUserPage />
+        )}
+      </MainMyDaily>
     </>
   );
 }
 
 export default MyDaily;
+
+const MainMyDaily = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

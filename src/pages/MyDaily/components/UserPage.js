@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../../components/Header/Header';
 import { useHistory } from 'react-router';
 import { Eye } from '@styled-icons/bootstrap/Eye';
 import { Hotel } from '@styled-icons/fa-solid/Hotel';
@@ -38,80 +37,77 @@ function UserPage({ data }) {
 
   return (
     <>
-      <Header page={'마이데일리'} />
-      <MainMyDaily>
-        <UserBox>
-          <UserInfo>
-            <UserDiv>
-              <UserData>
-                {name} <UserGrade>SILVER</UserGrade>
-              </UserData>
-              <UserEmail>{email}</UserEmail>
-            </UserDiv>
-            <LogOutIcon onClick={Logout} />
-          </UserInfo>
-          <UserCardBox>
-            <UserItem>
-              <CouponPoint>
-                <UserCoupon>
-                  할인쿠폰
-                  <GoArrow />
-                </UserCoupon>
-                <DetailCoupon>0개</DetailCoupon>
-              </CouponPoint>
-              <CouponPoint>
-                <UserPoint>
-                  포인트
-                  <GoArrow />
-                </UserPoint>
-                <DetailPoint>
-                  <PointIcon />
-                  1000
-                </DetailPoint>
-              </CouponPoint>
-            </UserItem>
-          </UserCardBox>
-          <UserCardBox>
-            <UserItem>
-              <UserWishList onClick={GotoWishList}>
-                <ListName>위시리스트</ListName>
-                <DetailList>
-                  <HeartIcon />
-                  {wishlist}
-                </DetailList>
-              </UserWishList>
-              <UserSawList onClick={GotoRecentSaw}>
-                <ListName>최근 본 상품</ListName>
-                <DetailList>
-                  <EyeIcon />
-                  {recentsaw}
-                </DetailList>
-              </UserSawList>
-              <UserReveiwList>
-                <ListName>나의 트루리뷰</ListName>
-                <DetailList>
-                  <ReviewIcon />
-                  {reveiw}
-                </DetailList>
-              </UserReveiwList>
-            </UserItem>
-          </UserCardBox>
-          <GoMain>
-            <GoMainButton onClick={GotoMain}>
-              위호텔의 감성적인 호텔 둘러보기! <GoMainIcon />
-            </GoMainButton>
-          </GoMain>
-        </UserBox>
-        <SubUserBox>
-          <SubReservationList onClick={GotoReservation}>
-            예약/구매 내역
-          </SubReservationList>
-          <SubUserList>결제카드관리</SubUserList>
-          <SubList>회원등급 혜택</SubList>
-          <SubList>앱 다운로드</SubList>
-          <SubList>리서치 참여</SubList>
-        </SubUserBox>
-      </MainMyDaily>
+      <UserBox>
+        <UserInfo>
+          <UserDiv>
+            <UserData>
+              {name} <UserGrade>SILVER</UserGrade>
+            </UserData>
+            <UserEmail>{email}</UserEmail>
+          </UserDiv>
+          <LogOutIcon onClick={Logout} />
+        </UserInfo>
+        <UserCardBox>
+          <UserItem>
+            <CouponPoint>
+              <UserCoupon>
+                할인쿠폰
+                <GoArrow />
+              </UserCoupon>
+              <DetailCoupon>0개</DetailCoupon>
+            </CouponPoint>
+            <CouponPoint>
+              <UserPoint>
+                포인트
+                <GoArrow />
+              </UserPoint>
+              <DetailPoint>
+                <PointIcon />
+                1000
+              </DetailPoint>
+            </CouponPoint>
+          </UserItem>
+        </UserCardBox>
+        <UserCardBox>
+          <UserItem>
+            <UserWishList onClick={GotoWishList}>
+              <ListName>위시리스트</ListName>
+              <DetailList>
+                <HeartIcon />
+                {wishlist}
+              </DetailList>
+            </UserWishList>
+            <UserSawList onClick={GotoRecentSaw}>
+              <ListName>최근 본 상품</ListName>
+              <DetailList>
+                <EyeIcon />
+                {recentsaw}
+              </DetailList>
+            </UserSawList>
+            <UserReveiwList>
+              <ListName>나의 트루리뷰</ListName>
+              <DetailList>
+                <ReviewIcon />
+                {reveiw}
+              </DetailList>
+            </UserReveiwList>
+          </UserItem>
+        </UserCardBox>
+        <GoMain>
+          <GoMainButton onClick={GotoMain}>
+            위호텔의 감성적인 호텔 둘러보기! <GoMainIcon />
+          </GoMainButton>
+        </GoMain>
+      </UserBox>
+      <SubUserBox>
+        <SubReservationList onClick={GotoReservation}>
+          예약/구매 내역
+        </SubReservationList>
+        <SubUserList>결제카드관리</SubUserList>
+        <SubList>회원등급 혜택</SubList>
+        <SubList>앱 다운로드</SubList>
+        <SubList>리서치 참여</SubList>
+      </SubUserBox>
     </>
   );
 }
@@ -306,10 +302,3 @@ const UserInfo = styled.div`
 `;
 
 const UserDiv = styled.div``;
-
-const MainMyDaily = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
