@@ -8,9 +8,19 @@ import styled from 'styled-components';
 
 const MapDetail = ({ mapItem, lat, lng }) => {
   const [_, modalDispatch] = useModalDispatch();
+  const hotelAddress = mapItem.detail_address;
 
   const onClose = () => {
     modalDispatch({ type: TOGGLEMODAL, id: mapModalId });
+  };
+
+  const handleCopyClipBoard = async () => {
+    try {
+      await navigator.clipboard.writeText(`${hotelAddress}`);
+      alert(`주소를 복사했습니다.`);
+    } catch (error) {
+      alert('복사를 실패하였습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
@@ -27,7 +37,7 @@ const MapDetail = ({ mapItem, lat, lng }) => {
         </MapWrap>
         <FooterInfo>
           <AddressInfo>{mapItem.detail_address}</AddressInfo>
-          <CopyAddress>주소 복사</CopyAddress>
+          <CopyAddress onClick={handleCopyClipBoard}>주소 복사</CopyAddress>
         </FooterInfo>
       </MapContainer>
     </MapModal>

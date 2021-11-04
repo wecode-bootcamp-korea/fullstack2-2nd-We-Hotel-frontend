@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const Map = props => {
   const { mapItem, width } = props;
+  const hotelAddress = mapItem.detail_address;
   const [_, modalDispatch] = useModalDispatch();
   const [{ lat, lng }, setGeometricData] = useState({
     lat: 0,
@@ -51,15 +52,24 @@ const Map = props => {
     modalDispatch({ type: TOGGLEMODAL, id: mapModalId });
   };
 
+  const handleCopyClipBoard = async () => {
+    try {
+      await navigator.clipboard.writeText(`${hotelAddress}`);
+      alert(`주소를 복사했습니다.`);
+    } catch (error) {
+      alert('복사를 실패하였습니다. 다시 시도해주세요.');
+    }
+  };
+
   if (mapItem) {
     return (
       <MapContainer {...styles}>
         <MapInner>
           <AddressBanner>
-            <Address>{mapItem.detail_address}</Address>
+            <Address>{hotelAddress}</Address>
             <MapImgIcon onClick={onClick} />
           </AddressBanner>
-          <CopyAddressWrap>
+          <CopyAddressWrap onClick={handleCopyClipBoard}>
             <CopyAddressIcon />
             <CopyAddressText>주소 복사</CopyAddressText>
           </CopyAddressWrap>
