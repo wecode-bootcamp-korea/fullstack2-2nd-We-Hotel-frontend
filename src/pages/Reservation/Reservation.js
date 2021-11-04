@@ -92,6 +92,7 @@ const UseScheduled = styled.div`
   font-size: 12px;
   line-height: 8px;
   font-weight: ${props => props.bold};
+  cursor: pointer;
 `;
 
 const SelectReservation = styled.div`

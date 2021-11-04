@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import Border from '../../components/Border/Border';
 import { MoreBtn } from '../../styles/detailStyles';
@@ -8,10 +8,26 @@ import DetailCarousel from './DetailCarousel';
 import DetailMainHeader from './DetailMainHeader';
 import DetailSectionA from './DetailSectionA';
 import DetailSectionB from './DetailSectionB';
+import Map from '../../components/Map/Map';
 import TrueReview from './TrueReview';
+import axios from 'axios';
 
 function DetailPresenter({ dates, getDateForm, funcs, states }) {
   const theme = useContext(ThemeContext);
+  const [mapItem, setmapItem] = useState([]);
+
+  useEffect(() => {
+    const loadItem = async () => {
+      try {
+        let resMapItem = await axios.get('/detail');
+        setmapItem(resMapItem.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    loadItem();
+  }, []);
   return (
     <>
       <CalendarModal />
@@ -36,7 +52,8 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
               />
 
               <MoreBtn>더보기</MoreBtn>
-              {/* <TrueReview trueReview /> */}
+              <TrueReview trueReview />
+              <Map mapItem={mapItem} width="768" />
             </Main>
           </>
         )}

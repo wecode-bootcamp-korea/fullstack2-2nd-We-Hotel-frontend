@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../../components/Header/Header';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
@@ -20,24 +19,23 @@ function NotUserPage() {
 
   return (
     <>
-      <Header page={'마이데일리'} />
-      <MainMyDaily>
-        <UserBox>
-          <LogInDiv>
-            <GoLogIn>로그인 해주세요.</GoLogIn>
-            <UserDesk>회원가입하시고 다양한 혜택을 누리세요</UserDesk>
-          </LogInDiv>
-        </UserBox>
-        <ButtonDiv>
-          <LogInSignInButton onClick={GotoLogIn}>로그인</LogInSignInButton>
-        </ButtonDiv>
-        <SubUserBox>
-          <SubList onClick={GotoRecentSaw}>최근 본 상품</SubList>
-          <SubUserList onClick={GotoWishList}>위시리스트</SubUserList>
-          <SubList>리서치 참여</SubList>
-          <SubList>앱 다운로드</SubList>
-        </SubUserBox>
-      </MainMyDaily>
+      <UserBox>
+        <LogInDiv>
+          <GoLogIn>로그인 해주세요.</GoLogIn>
+          <UserDesk>회원가입하시고 다양한 혜택을 누리세요</UserDesk>
+        </LogInDiv>
+      </UserBox>
+      <ButtonDiv>
+        <LogInSignInButton onClick={GotoLogIn}>
+          <Text>로그인</Text>
+        </LogInSignInButton>
+      </ButtonDiv>
+      <SubUserBox>
+        <SubList onClick={GotoRecentSaw}>최근 본 상품</SubList>
+        <SubUserList onClick={GotoWishList}>위시리스트</SubUserList>
+        <SubList>리서치 참여</SubList>
+        <SubList>앱 다운로드</SubList>
+      </SubUserBox>
     </>
   );
 }
@@ -74,14 +72,31 @@ const ButtonDiv = styled.div`
   width: 720px;
 `;
 
-const LogInSignInButton = styled.button`
+const Text = styled.div`
   padding: 14px 300px 14px 300px;
+  font-weight: lighter;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  &:hover {
+    color: white;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.3);
+  }
+`;
+
+const LogInSignInButton = styled.button`
   font-size: 22px;
   font-weight: bold;
   border: solid 2px #6e2c9b;
   color: #6e2c9b;
   background-color: white;
   cursor: pointer;
+  &:hover {
+    background-color: #6e2c9b;
+  }
 `;
 
 const UserDesk = styled.div`
@@ -102,10 +117,3 @@ const UserBox = styled.div`
 `;
 
 const LogInDiv = styled.div``;
-
-const MainMyDaily = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
