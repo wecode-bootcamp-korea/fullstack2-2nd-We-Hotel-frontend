@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import SignupForm from './Components/SignupForm';
-import { autoHypenBirthday } from './utils';
+import { autoHypenBirthday, validation } from './utils';
 import styled from 'styled-components';
 
 function Signup({ location }) {
   const history = useHistory();
-
-  // const res = location.props;
+  // const userInfo = location.props;
   const [inputs, setInputs] = useState({
     name: '',
     phoneNumber: '',
     birthday: '',
   });
-  const [isNameValid, setIsNameValid] = useState(false);
-  const [isBirthdayValid, setIsBirthdayValid] = useState(false);
-  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
+
+  const [inputValidated, setInputValidated] = useState({
+    name: false,
+    phoneNumber: false,
+    birthday: false,
+  });
 
   const { name, phoneNumber, birthday } = inputs;
 
@@ -30,8 +32,7 @@ function Signup({ location }) {
 
   const nameChangeHandler = e => {
     const { value } = e.target;
-    const notKorean = /[a-z0-9]|[[\]{}()<>?|`~!@#$%^&*-_+=,.;:"'\\]/g;
-    const nameWithOnlyKorean = value.replace(notKorean, '');
+    const nameWithOnlyKorean = value.replace(validation.notKorean, '');
     setInputs({
       ...inputs,
       name: nameWithOnlyKorean,
@@ -40,43 +41,33 @@ function Signup({ location }) {
 
   const phoneNumberChangeHandler = e => {
     const { value } = e.target;
-    const numberOnly = value.replace(/[^0-9]/g, '');
+    const numberOnly = value.replace(validation.number, '');
     setInputs({
       ...inputs,
       phoneNumber: numberOnly,
     });
   };
 
-  const validation = {
-    name: /^[가-힣]{2,4}$/,
-    phoneNumber: /^[0-9\b -]{11}$/,
-    birthday:
-      /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
-  };
-
   useEffect(() => {
-    validation.name.exec(inputs.name)
-      ? setIsNameValid(true)
-      : setIsNameValid(false);
-    validation.phoneNumber.exec(inputs.phoneNumber)
-      ? setIsPhoneNumberValid(true)
-      : setIsPhoneNumberValid(false);
-    validation.birthday.exec(inputs.birthday)
-      ? setIsBirthdayValid(true)
-      : setIsBirthdayValid(false);
+    setInputValidated({
+      ...inputValidated,
+      name: validation.name.test(inputs.name),
+      phoneNumber: validation.phoneNumber.test(inputs.phoneNumber),
+      birthday: validation.birthday.test(inputs.birthday),
+    });
   }, [inputs]);
 
   const signupButtonClickHandler = e => {
     e.preventDefault();
-    if (isNameValid && isBirthdayValid && isPhoneNumberValid) {
+    if (Object.values(inputValidated).every(v => v)) {
       fetch('/user/information', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({ ...inputs }),
       })
         .then(res => res.json())
         .then(data => {
           localStorage.setItem('token', data.token);
-          alert(`님 환영합니다.`);
+          alert(`${data.nickname}님 환영합니다.`);
           history.push('/');
         });
     } else {
@@ -102,7 +93,9 @@ function Signup({ location }) {
           name="name"
           type="text"
           value={name}
-          description={!isNameValid && '2-4자의 한글 이름을 입력해주세요'}
+          description={
+            !inputValidated.name && '2-4자의 한글 이름을 입력해주세요'
+          }
           onChange={nameChangeHandler}
         />
         <SignupForm
@@ -110,7 +103,9 @@ function Signup({ location }) {
           name="birthday"
           type="text"
           value={birthday}
-          description={!isBirthdayValid && 'YYYYMMDD 생일을 입력해주세요'}
+          description={
+            !inputValidated.birthday && 'YYYYMMDD 생일을 입력해주세요'
+          }
           onChange={birthdayChangeHandler}
         />
         <SignupForm
@@ -119,7 +114,7 @@ function Signup({ location }) {
           type="text"
           value={phoneNumber}
           description={
-            !isPhoneNumberValid && '휴대폰 번호을 입력해주세요( - 제외)'
+            !inputValidated.phoneNumber && '휴대폰 번호을 입력해주세요( - 제외)'
           }
           onChange={phoneNumberChangeHandler}
         />
@@ -161,11 +156,11 @@ const SignupWrapper = styled.div`
 `;
 
 const DescriptionWrapper = styled.div`
-  padding: 70px 0px 30px;
+  padding: 60px 0px 30px;
 `;
 
 const Description = styled.p`
-  padding: 45px 0px;
+  padding: 40px 0px 15px;
   color: rgb(17, 17, 17);
   line-height: 1.4em;
   font-size: 25px;
