@@ -1,82 +1,104 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Uprasing from '../../../components/Modals/Uprasing';
+import styled from 'styled-components';
 
-function LocationMenu({ isActive, clickLocation, isClick, onClick }) {
+function LocationMenu({ townName }) {
+  const [city, setCity] = useState([]);
+  const [town, setTown] = useState({});
+  const [cityId, setCityId] = useState(1);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/data/LIST_DATA/LOCATION.json')
+      .then(res => res.json())
+      .then(res => {
+        setCity(res.CITY);
+        setTown(res.CITY[0].town);
+        setCityId(res.CITY[0].id);
+      });
+  }, []);
+
+  const onClick = id => {
+    const cityChoice = city.find(item => item.id === id);
+    setTown(cityChoice.town);
+    setCityId(id);
+  };
+
   return (
-    <Uprasing>
-      <div>까궁</div>
-      {/* <LocationList className={isActive ? 'show' : 'active'}>
-        <LocationSelect onClick={clickLocation}>서 울</LocationSelect>
-        <LocationSelect>강 원</LocationSelect>
-        <LocationSelect>부 산</LocationSelect>
-        <LocationSelect>제 주</LocationSelect>
-      </LocationList>
-      <SubBar>
-        <SubLocationList className={isClick ? 'show' : 'active'}>
-          <SubLocationSelect>강남구</SubLocationSelect>
-          <SubLocationSelect>강남구</SubLocationSelect>
-          <SubLocationSelect>강남구</SubLocationSelect>
-          <SubLocationSelect>강남구</SubLocationSelect>
-        </SubLocationList>
-      </SubBar> */}
+    <Uprasing id={'modal_1'}>
+      <Modal>
+        <LocationList>
+          {Object.keys(city).length > 0 &&
+            city.map(element => {
+              return (
+                <LocationSelect
+                  cityId={cityId}
+                  id={element.id}
+                  onClick={() => onClick(element.id)}
+                  key={element.id}
+                >
+                  {element.city}
+                </LocationSelect>
+              );
+            })}
+        </LocationList>
+        <SubBar>
+          <SubLocationList>
+            {town.length > 0 &&
+              town.map(item => (
+                <SubLocationSelect
+                  onClick={() => townName(item.name)}
+                  key={item.key}
+                >
+                  {item.name}
+                </SubLocationSelect>
+              ))}
+          </SubLocationList>
+        </SubBar>
+      </Modal>
     </Uprasing>
   );
 }
 
 export default LocationMenu;
 
-const SubLocationList = styled.ul`
-  max-height: 0;
-  opacity: 1;
-  transition: 0.4s ease-in-out;
-  &.active {
-    overflow: hidden;
-    opacity: 0;
-  }
+const Modal = styled.div`
+  display: flex;
+  border-top: solid 3px #6e2c9b;
 `;
+
+const LocationList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SubLocationList = styled.ul``;
 
 const SubBar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 400px;
-  z-index: 1;
-`;
-
-const LocationList = styled.ul`
-  max-height: 0;
-  opacity: 1;
-  transition: 0.4s ease-in-out;
-  &.active {
-    overflow: hidden;
-    opacity: 0;
-  }
 `;
 
 const SubLocationSelect = styled.li`
   display: flex;
-  justify-content: center;
   align-items: center;
-  top: 0;
-  left: 360px;
-  width: 300px;
+  padding-left: 20px;
+  margin-right: 90px;
+  width: 600px;
   height: 36px;
-  margin: 0 10px;
-  background-color: #eee;
+  border-left: solid 1px #f0f0f0;
+  font-weight: lighter;
   cursor: pointer;
-  max-height: 100vh;
 `;
 
 const LocationSelect = styled.li`
+  color: ${({ id, cityId }) => (id === cityId ? '#6e2c9b' : 'gray')};
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 370px;
+  width: 100px;
   height: 36px;
-  margin: 0 10px;
-  background-color: #eee;
+  border-bottom: solid 1px #f0f0f0;
   cursor: pointer;
-  max-height: 100vh;
 `;

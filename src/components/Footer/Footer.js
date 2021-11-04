@@ -65,11 +65,11 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const Text = styled.p`
-  margin: 7px;
+  margin: 5px;
   font-size: 12px;
   color: gray;
 `;
@@ -85,7 +85,7 @@ const Strong = styled.strong`
 `;
 
 const AgreedLink = styled.a`
-  margin: 7px;
+  margin: 0 5px;
   font-size: 12px;
   text-decoration-line: none;
   color: gray;
@@ -93,22 +93,20 @@ const AgreedLink = styled.a`
 `;
 
 const WeHotel = styled.h1`
-  margin: 9px;
+  margin: 5px;
   font-size: 25px;
   color: gray;
 `;
 
 const SubContainer = styled.div`
   position: relative;
-  bottom: -10px;
-  margin-top: 30px 0 15px 0;
+  margin-top: 20px 0 15px 0;
   padding: 5px;
   background-color: #dcdde1;
 `;
 
 const MainContainer = styled.div`
-  width: 768px;
-  height: 335px;
+  width: 720px;
   padding: 10px 15px 10px 15px;
   bottom: 0;
   background-color: #f5f6fa;

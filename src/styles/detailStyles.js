@@ -71,6 +71,7 @@ export const Title = styled(BasicText)`
 
 export const Message = styled(BasicText)`
   display: inline-block;
+  padding-top: 10px;
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors['gray-200']};
 `;
