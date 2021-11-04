@@ -20,8 +20,9 @@ const Map = props => {
     width,
   };
 
-  const navermaps = window.naver.maps;
-  const changeAddressToCoordinate = address => {
+  const ChangeCoordinate = address => {
+    const navermaps = window.naver.maps;
+
     navermaps.Service.geocode(
       {
         query: address,
@@ -39,6 +40,7 @@ const Map = props => {
         }
 
         let item = response.v2.addresses[0];
+
         setGeometricData({
           lng: item.x,
           lat: item.y,
@@ -48,7 +50,7 @@ const Map = props => {
   };
 
   const onClick = () => {
-    changeAddressToCoordinate(mapItem.detail_address);
+    ChangeCoordinate(mapItem.detail_address);
     modalDispatch({ type: TOGGLEMODAL, id: mapModalId });
   };
 
@@ -78,15 +80,11 @@ const Map = props => {
       </MapContainer>
     );
   } else {
-    return <div>로딩중</div>;
+    return;
   }
 };
 
 export default Map;
-
-Map.defaultProps = {
-  _onClick: () => {},
-};
 
 const MapContainer = styled.div`
   width: ${props => props.width}px;

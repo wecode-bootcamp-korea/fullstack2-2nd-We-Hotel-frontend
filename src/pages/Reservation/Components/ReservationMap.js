@@ -1,18 +1,21 @@
 import React from 'react';
+import NaverApi from '../../../components/Map/NaverApi';
 import { Link } from 'react-router-dom';
 import { BookOpen } from '@styled-icons/feather/BookOpen';
 import { MapPin } from '@styled-icons/feather/MapPin';
 import { Edit } from '@styled-icons/feather/Edit';
 import styled from 'styled-components';
 
-function ReservationMap({ accomodationId }) {
+function ReservationMap({ accomodationId, mapItem, lat, lng }) {
   const notReadyHandler = () => {
     alert('준비중인 서비스입니다.');
   };
 
   return (
     <Map>
-      <MapImg>map</MapImg>
+      <MapImg>
+        <NaverApi mapItem={mapItem} lat={lat} lng={lng} />
+      </MapImg>
       <MapInfo>
         <MapInfoBox>
           <MapInfoTitle>hotel name</MapInfoTitle>
@@ -51,14 +54,14 @@ const Map = styled.div`
 const MapImg = styled.div`
   position: relative;
   width: 100%;
-  height: 211px;
+  height: 100%;
   background-color: yellow;
   overflow: hidden;
 `;
 
 const MapInfo = styled.div`
   position: absolute;
-  top: 131px;
+  top: 160px;
   left: 0;
   right: 0;
   padding: 0 20px;
@@ -70,7 +73,7 @@ const MapInfoBox = styled.div`
 `;
 
 const MapInfoTitle = styled.div`
-  padding: 25px 0;
+  padding: 15px 0;
   color: #4d4d4d;
   border-bottom: 1px solid #f0f0f0;
   text-align: center;
@@ -87,7 +90,7 @@ const Btn = styled.li`
   position: relative;
   float: left;
   width: 33.3%;
-  padding: 10px;
+  padding: 5px;
   border-right: 1px solid #f0f0f0;
   background-color: #fff;
   font-size: 13px;
