@@ -6,9 +6,10 @@ import styled from 'styled-components';
 
 function Signup({ location }) {
   const history = useHistory();
-  // const userInfo = location.props;
+  const userInfo = location.props;
+  console.log(userInfo);
   const [inputs, setInputs] = useState({
-    name: '',
+    name: userInfo ? userInfo.nickname : '',
     phoneNumber: '',
     birthday: '',
   });
@@ -58,16 +59,24 @@ function Signup({ location }) {
   }, [inputs]);
 
   const signupButtonClickHandler = e => {
+    const input = { ...inputs, ...userInfo };
+    console.log(JSON.stringify(input));
     e.preventDefault();
     if (Object.values(inputValidated).every(v => v)) {
-      fetch('/user/information', {
-        method: 'PUT',
-        body: JSON.stringify({ ...inputs }),
+      fetch('http://localhost:8000/user/signup', {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(input),
       })
         .then(res => res.json())
         .then(data => {
           localStorage.setItem('token', data.token);
-          alert(`${data.nickname}님 환영합니다.`);
+          console.log(data.userInfo);
+          localStorage.setItem('user', JSON.stringify(data.userInfo));
+          alert(`${data.userInfo.nickname}님 환영합니다.`);
           history.push('/');
         });
     } else {

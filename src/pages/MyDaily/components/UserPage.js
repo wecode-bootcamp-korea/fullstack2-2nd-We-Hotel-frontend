@@ -8,9 +8,10 @@ import { ProductHunt } from '@styled-icons/boxicons-logos/ProductHunt';
 import { ArrowBarRight } from '@styled-icons/bootstrap/ArrowBarRight';
 import { ArrowIosForwardOutline } from '@styled-icons/evaicons-outline/ArrowIosForwardOutline';
 import styled from 'styled-components';
+const { Kakao } = window;
 
-function UserPage({ data }) {
-  const { id, name, email, wishlist, recentsaw, reveiw } = data;
+function UserPage({ data, user }) {
+  const { id, wishlist, recentsaw, reveiw } = data;
   const history = useHistory();
 
   const GotoMain = () => {
@@ -31,7 +32,16 @@ function UserPage({ data }) {
 
   const Logout = () => {
     if (window.confirm('로그아웃 하시겠습니까??')) {
-      alert('정상적으로 로그아웃 되었습니다.');
+      // Kakao.init(process.env.REACT_APP_JAVASCRIPT_KEY);
+      // console.log(Kakao.isInitialized());
+
+      if (!Kakao.Auth.getAccessToken()) {
+        console.log('로그인 놉');
+        return;
+      }
+      localStorage.clear();
+      Kakao.Auth.logout(alert('정상적으로 로그아웃 되었습니다.'));
+      history.push('/');
     }
   };
 
@@ -41,9 +51,9 @@ function UserPage({ data }) {
         <UserInfo>
           <UserDiv>
             <UserData>
-              {name} <UserGrade>SILVER</UserGrade>
+              {user.nickname} <UserGrade>SILVER</UserGrade>
             </UserData>
-            <UserEmail>{email}</UserEmail>
+            <UserEmail>{user.email}</UserEmail>
           </UserDiv>
           <LogOutIcon onClick={Logout} />
         </UserInfo>

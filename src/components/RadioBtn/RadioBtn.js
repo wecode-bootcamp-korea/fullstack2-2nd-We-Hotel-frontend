@@ -31,10 +31,11 @@ const Input = styled.input`
 const Label = styled.label`
   margin: 0 10px;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 10px;
   cursor: pointer;
   color: ${({ theme, action, htmlFor }) =>
-    action === htmlFor ? 'black' : theme.colors['gray-100']};
+    action === htmlFor ? theme.colors['purple-200'] : 'rgb(146, 146, 146)'};
+  /* action === htmlFor ? 'rgb(146, 146, 146)' : theme.colors['gray-100']}; */
 
   &:before {
     content: '${({ name }) => (name === 'option' ? ' • ' : '')}';
@@ -42,11 +43,15 @@ const Label = styled.label`
 
   &:before,
   svg {
-    width: 30px;
+    width: 25px;
+    margin-bottom: 5px;
     color: ${({ theme, action, htmlFor }) => {
       return action === htmlFor
         ? theme.colors['purple-200']
-        : theme.colors['purple-100'];
+        : 'rgb(146, 146, 146)';
+      // return action === htmlFor
+      // ? theme.colors['purple-200']
+      // : theme.colors['purple-100'];
     }};
   }
 `;

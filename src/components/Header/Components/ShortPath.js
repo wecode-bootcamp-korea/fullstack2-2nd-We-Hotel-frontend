@@ -12,9 +12,8 @@ function ShortPath({ setBarClicked, barClicked }) {
 
   useEffect(() => {
     if (isUser) {
-      fetch('/user')
-        .then(res => res.json)
-        .then(res => setUser(res.user));
+      const [userInfo] = JSON.parse(localStorage.getItem('user'));
+      setUser(userInfo);
     }
   }, [isUser]);
 
@@ -26,7 +25,9 @@ function ShortPath({ setBarClicked, barClicked }) {
       history.push('/login');
     }
   };
-
+  const notReadyHandler = () => {
+    alert('준비중인 서비스입니다.');
+  };
   return (
     <Wrapper>
       <ShortPathWrapper>
@@ -43,7 +44,10 @@ function ShortPath({ setBarClicked, barClicked }) {
                   : '위호텔 회원가입하시고 다양한 혜택을 누리세요'}
               </UserInfoSub>
             </UserInfo>
-            <Link to={isUser ? '/mydaily' : '/login'}>
+            <Link
+              to={isUser ? '/mydaily' : '/login'}
+              onClick={isUser && notReadyHandler}
+            >
               <ButtonWrapper>
                 <Button>{isUser ? '내 정보수정' : '로그인'}</Button>
               </ButtonWrapper>

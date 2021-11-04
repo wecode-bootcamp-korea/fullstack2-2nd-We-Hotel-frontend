@@ -119,7 +119,7 @@ const CarouselContainer = styled.div`
   --width: ${props => props.width}px;
   --height: ${props => props.height}px || auto;
   position: relative;
-  width: var(--width);
+  max-width: var(--width);
   max-height: var(--height);
   margin: 10px auto;
   overflow: hidden;
@@ -139,7 +139,7 @@ const CardBox = styled.div`
 
 const CardImg = styled.img`
   width: 100%;
-  height: 100%;
+  height: 380px;
 `;
 
 const CardCountWrap = styled.div`
