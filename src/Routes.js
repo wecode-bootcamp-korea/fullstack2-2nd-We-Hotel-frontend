@@ -7,6 +7,8 @@ import Detail from './pages/Detail';
 import List from './pages/List/List';
 import Main from './pages/Main/Main';
 import MyDaily from './pages/MyDaily/MyDaily';
+import WishList from './pages/WishList/WishList';
+import RecentSaw from './pages/RecentSaw/RecentSaw';
 import Review from './pages/Review/Review';
 import Search from './pages/Search/Search';
 import SearchResult from './pages/Search/SearchResult';
@@ -25,6 +27,8 @@ function Router() {
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/wishlist" component={WishList} />
+        <Route exact path="/recentsaw" component={RecentSaw} />
         <Route exact path="/search/result" component={SearchResult} />
         <Route exact path="/reservation" component={Reservation} />
         <Route exact path="/reservation/:id" component={ReservationDetail} />

@@ -21,7 +21,7 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
             <DetailCarousel carouselItem={states?.carouselItem} />
             <Main>
               <DetailMainHeader hotelInfo={states?.hotelInfo} />
-              <Border height={11} color={theme.colors['gray-50']} />
+              <Border height={11} color={'white'} />
               <DetailSectionA
                 fromDate={dates?.fromDate}
                 toDate={dates?.toDate}

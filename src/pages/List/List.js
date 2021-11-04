@@ -13,17 +13,22 @@ import Uprasing from '../../components/Modals/Uprasing';
 function List({ match }) {
   const id = match.params.id;
   const [data, setData] = useState([]);
-  const [{ className }, modalDispatch] = useModalDispatch();
+  const [city, setCity] = useState([]);
+  const [modalState, modalDispatch] = useModalDispatch();
   const [{ selectedDay }, calendarDispatch] = useCalendarDispatch();
 
-  const onClick = () => {
+  const listModalId1 = 'modal_1';
+  const listModalId2 = 'modal_2';
+
+  const onClick = id => {
     window.scrollTo(0, 0);
-    modalDispatch({ type: TOGGLEMODAL });
+    modalDispatch({ type: TOGGLEMODAL, id });
   };
 
   useEffect(() => {
     getData();
-    modalDispatch({ type: TOGGLEXBTN });
+    modalDispatch({ type: TOGGLEXBTN, id: listModalId2 });
+    modalDispatch({ type: TOGGLEXBTN, id: listModalId1 });
   }, []);
 
   const getData = () => {
@@ -34,8 +39,8 @@ function List({ match }) {
 
   return (
     <>
-      <Uprasing>
-        <CalendarContainer priceShow={false} />
+      <Uprasing id={listModalId2}>
+        <CalendarContainer priceShow={false} modalId={listModalId2} />
       </Uprasing>
       <Header />
       <MainList>
@@ -57,4 +62,6 @@ const MainList = styled.section`
   justify-content: center;
   align-items: center;
   position: relative;
+  max-width: 768px;
+  margin: 0 auto;
 `;

@@ -3,39 +3,40 @@ import { Location } from '@styled-icons/ionicons-outline/Location';
 import { CalendarMinus } from '@styled-icons/bootstrap/CalendarMinus';
 import LocationMenu from './Location';
 import styled from 'styled-components';
+
 import { useModalDispatch } from '../../../Contexts/ModalContext/ModalContext';
 import { TOGGLEMODAL } from '../../../Contexts/constants';
-
 function SelectContainer({ onClick, selectedDay }) {
-  const [isActive, setIsActive] = useState(false);
-  const [isClick, setIsClick] = useState(false);
+  const [selectedTown, setSelectedTown] = useState('');
 
   const fromM = selectedDay?.from?.month;
   const fromD = selectedDay?.from?.day;
   const toM = selectedDay?.to?.month || fromM;
   const toD = selectedDay?.to?.day || fromD;
 
-  const clickLocation = () => setIsClick(!isClick);
-
-  const [{ backBtnShow, y, second, className }, modalDispatch] =
-    useModalDispatch();
-
-  const modalOnClick = () => {
-    window.scrollTo(0, 0);
-    modalDispatch({ type: TOGGLEMODAL });
+  const onClose = () => {
+    modalDispatch({ type: TOGGLEMODAL, id: 'modal_1' });
   };
+
+  const townName = name => {
+    setSelectedTown(name);
+    onClose();
+  };
+
+  const [_, modalDispatch] = useModalDispatch();
 
   return (
     <>
       <SelectBar>
         <LocationBar>
-          <LocationButton onClick={modalOnClick}>
+          <LocationButton onClick={() => onClick('modal_1')}>
+            {selectedTown}
             <LocationPoint />
           </LocationButton>
-          <LocationMenu />
+          <LocationMenu townName={townName} />
         </LocationBar>
 
-        <DateButton onClick={onClick}>
+        <DateButton onClick={() => onClick('modal_2')}>
           <CalenderIcon />
           {`${fromM}.${fromD} ~ ${toM}.${toD}`}
         </DateButton>
@@ -60,9 +61,13 @@ const LocationPoint = styled(Location)`
 
 const LocationButton = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 370px;
   height: 36px;
   margin: 10px;
+  padding-top: 5px;
   background-color: #eee;
   cursor: pointer;
 `;

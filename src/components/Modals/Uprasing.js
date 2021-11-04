@@ -6,7 +6,6 @@ import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 function Uprasing({ children, id }) {
   const [modalState, modalDispatch] = useModalDispatch();
   const { isShow, second, y, backBtnShow } = modalState[id];
-
   return isShow ? (
     <Container y={y} second={second}>
       <Wrapper>

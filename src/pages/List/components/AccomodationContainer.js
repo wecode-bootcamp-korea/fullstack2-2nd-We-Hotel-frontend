@@ -5,7 +5,7 @@ import { Heart } from '@styled-icons/bootstrap/Heart';
 import { HeartFill } from '@styled-icons/bootstrap/HeartFill';
 import { addToStorage } from '../utils';
 
-function AccommodationContainer({ data }) {
+function AccommodationContainer({ data, page }) {
   const history = useHistory();
   const { id, img, name, location, price, grade } = data;
   const [isClicked, setIsClicked] = useState(false);
@@ -31,9 +31,11 @@ function AccommodationContainer({ data }) {
         <HotelImage src={img} alt="" onClick={accomodationClickHandler} />
         <HotelName onClick={accomodationClickHandler}>{name}</HotelName>
         <HotelLocation>{location}</HotelLocation>
-        <Price>
-          <Discount>{price}</Discount>
-        </Price>
+        {page !== 'recent' && (
+          <Price>
+            <Discount>{price}</Discount>
+          </Price>
+        )}
       </ImageContainer>
     </AccommodationBar>
   );
@@ -52,7 +54,8 @@ const GradeBox = styled.div`
 `;
 
 const Discount = styled.div`
-  padding: 20px 0 0 10px;
+  padding: 0 0 0 20px;
+  margin-bottom: 15px;
   font-size: 20px;
   font-weight: bold;
 `;
@@ -62,13 +65,14 @@ const Price = styled.div`
 `;
 
 const HotelLocation = styled.div`
-  padding: 20px 0 0 10px;
+  padding: 20px 0 0 20px;
+  margin-bottom: 15px;
   color: #636e72;
 `;
 
 const HotelName = styled.div`
   font-size: 20px;
-  padding: 20px 0 0 10px;
+  padding: 20px 0 0 20px;
 `;
 
 const EmptyHeart = styled(Heart)`
@@ -95,7 +99,6 @@ const HotelImage = styled.img`
 const ImageContainer = styled.div`
   position: relative;
   width: 768px;
-  height: 380px;
   background-color: whitesmoke;
 `;
 
