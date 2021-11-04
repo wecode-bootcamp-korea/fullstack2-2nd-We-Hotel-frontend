@@ -4,47 +4,51 @@ import styled from 'styled-components';
 const NaverApi = ({ mapItem, lat, lng }) => {
   const navermaps = window.naver.maps;
   const naverMapRef = useRef();
+  const naverMapElement = naverMapRef.current;
 
-  const mapApi = () => {
-    const naverMapElement = naverMapRef.current;
+  const reusultMapApi = () => {
+    const hotelLatLng = new navermaps.LatLng(lat, lng);
+    let options = {
+      center: hotelLatLng,
+      zoom: 17,
+    };
+    const map = new navermaps.Map(naverMapElement, options);
+    const markerOptions = {
+      position: hotelLatLng,
+      map: map,
+    };
 
-    if (lat) {
-      const hotelLatLng = new navermaps.LatLng(lat, lng);
-      const options = {
-        center: hotelLatLng,
-        zoom: 16,
-      };
-      const map = new navermaps.Map(naverMapElement, options);
-      const markerOptions = {
-        position: hotelLatLng,
-        map: map,
-      };
+    const contents = mapItem.name;
+    let marker = new navermaps.Marker(markerOptions);
 
-      const contents = mapItem.name;
-      const marker = new navermaps.Marker(markerOptions);
+    let infowindow = new navermaps.InfoWindow({
+      content: `${contents}`,
+      maxWidth: 400,
+      backgroundColor: '#fff',
+      borderColor: '#fff',
+      borderWidth: 10,
+      anchorSize: new navermaps.Size(10, 10),
+    });
 
-      const infowindow = new navermaps.InfoWindow({
-        content: `${contents}`,
-        maxWidth: 400,
-        backgroundColor: '#fff',
-        borderColor: '#fff',
-        borderWidth: 10,
-        anchorSize: new navermaps.Size(10, 10),
-      });
-
-      navermaps.Event.addListener(marker, 'click', function (e) {
-        if (infowindow.getMap()) {
-          infowindow.close();
-        } else {
-          infowindow.open(map, marker);
-        }
-      });
-    } else {
-      console.log('로딩중');
-    }
+    navermaps.Event.addListener(marker, 'click', function (e) {
+      if (infowindow.getMap()) {
+        infowindow.close();
+      } else {
+        infowindow.open(map, marker);
+      }
+    });
   };
 
-  mapApi();
+  const defaultMapApi = () => {
+    let options = {
+      center: new navermaps.LatLng(37.5666805, 126.9784147),
+      zoom: 17,
+    };
+
+    // let map = new navermaps.Map(naverMapElement, options);
+  };
+
+  lat && lng ? reusultMapApi() : defaultMapApi();
 
   return <MapContainer ref={naverMapRef} />;
 };
@@ -52,6 +56,6 @@ const NaverApi = ({ mapItem, lat, lng }) => {
 export default NaverApi;
 
 const MapContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  height: 110%;
 `;

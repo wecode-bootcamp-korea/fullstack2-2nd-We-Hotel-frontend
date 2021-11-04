@@ -7,6 +7,11 @@ import ReservationMap from './Components/ReservationMap';
 import styled from 'styled-components';
 
 function ReservationDetail({ match }) {
+  const [{ lat, lng }, setGeometricData] = useState({
+    lat: 0,
+    lng: 0,
+  });
+
   // const [data, setData] = useState({});
 
   // useEffect(() => {
@@ -14,6 +19,46 @@ function ReservationDetail({ match }) {
   //     .then(res => res.json)
   //     .then(res => setData(res));
   // }, []);
+
+  const sample = {
+    id: 1,
+    accomodation_id: 1,
+    name: '서울 신라호텔',
+    detail_address: '서울특별시 중구 동호로 249',
+  };
+
+  useEffect(() => {
+    ChangeCoordinate(sample.detail_address);
+  }, []);
+
+  const ChangeCoordinate = address => {
+    const navermaps = window.naver.maps;
+
+    navermaps.Service.geocode(
+      {
+        query: address,
+      },
+      function (status, response) {
+        if (status === navermaps.Service.Status.ERROR) {
+          if (!address) {
+            return alert('Geocode Error, Please check address');
+          }
+          return alert('Geocode Error, address:' + address);
+        }
+
+        if (response.v2.meta.totalCount === 0) {
+          return alert('No result.');
+        }
+
+        let item = response.v2.addresses[0];
+
+        setGeometricData({
+          lng: item.x,
+          lat: item.y,
+        });
+      }
+    );
+  };
 
   const numberWithCommas = x => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -38,7 +83,12 @@ function ReservationDetail({ match }) {
     <>
       <Header page="예약/구매내역" />
       <Reservation>
-        <ReservationMap accomodationId={accomodationId} />
+        <ReservationMap
+          accomodationId={accomodationId}
+          mapItem={sample}
+          lat={lat}
+          lng={lng}
+        />
         <Hotel>
           <Title>예약 정보</Title>
           <DateList>
