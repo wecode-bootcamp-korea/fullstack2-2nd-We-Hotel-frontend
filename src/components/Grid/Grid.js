@@ -34,7 +34,9 @@ const Grid = props => {
 
               return (
                 <ContentItemWrap key={id}>
-                  <ContentImage src={image_url} />
+                  <ImageWrapper>
+                    <ContentImage src={image_url} />
+                  </ImageWrapper>
                   <ContentTextWrap>
                     <HotelLocation>
                       {towns_name} | {grade}
@@ -67,7 +69,7 @@ Grid.defaultProps = {
 
 const GridContainer = styled.article`
   position: relative;
-  width: ${props => props.width}px;
+  max-width: ${props => props.width}px;
   margin: 40px auto;
   overflow: hidden;
 `;
@@ -116,6 +118,13 @@ const ContentItemWrap = styled.figure`
   margin-right: 1%;
 `;
 
+const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
 const ContentImage = styled.img`
   display: block;
   width: 100%;
@@ -139,6 +148,7 @@ const HotelName = styled.h2`
   color: #4d4d4d;
   line-height: 20px;
   font-weight: 500;
+  text-overflow: ellipsis;
 `;
 
 const HotelNormalPrice = styled.h2`

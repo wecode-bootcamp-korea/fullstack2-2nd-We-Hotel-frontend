@@ -9,9 +9,9 @@ function ShortPathList({ data, isUser, pathClickHandler }) {
   return (
     <ShortPath onClick={() => pathClickHandler(data.path)}>
       {data.path === '/reservation' && <ListIcon />}
-      {data.path === '/likes' && <HeartIcon />}
+      {data.path === '/wishlist' && <HeartIcon />}
       {data.path === '/mydaily' && <UserIcon />}
-      {data.path === '/current' && <HistoryIcon />}
+      {data.path === '/recentsaw' && <HistoryIcon />}
       <PathName>{data.text}</PathName>
     </ShortPath>
   );

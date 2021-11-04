@@ -31,8 +31,8 @@ Category.defaultProps = {
 };
 
 const CategoryContainer = styled.div`
-  width: 760px;
-  margin: 40px auto;
+  max-width: 760px;
+  margin: 10px auto;
   padding: 0 24px;
 `;
 
@@ -63,6 +63,6 @@ const ItemName = styled.figcaption`
   margin-top: 6px;
   color: #4d4d4d;
   text-align: center;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 `;

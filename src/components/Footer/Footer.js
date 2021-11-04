@@ -41,8 +41,10 @@ function Footer() {
 export default Footer;
 
 const Button = styled.button`
+  display: block;
+  width: 100%;
   height: 30px;
-  width: 330px;
+  /* width: 330px; */
   border: 1px solid #e7e7e7;
   margin: 8px;
   cursor: pointer;
@@ -106,7 +108,7 @@ const SubContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  width: 720px;
+  /* width: 720px; */
   padding: 10px 15px 10px 15px;
   bottom: 0;
   background-color: #f5f6fa;
@@ -116,5 +118,6 @@ const MainFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 58px;
+  max-width: 768px;
+  margin: 0 auto 58px;
 `;

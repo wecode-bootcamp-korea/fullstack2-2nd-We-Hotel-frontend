@@ -10,24 +10,22 @@ function KakaoLogin({ maintainLogin }) {
   const kakaoLoginClickHandler = () => {
     Kakao.Auth.login({
       success: function (authObj) {
-        fetch('/user/kakao', {
+        fetch(`http://localhost:8000/user/kakao`, {
           method: 'POST',
-          body: JSON.stringify({
-            authObj,
-          }),
+          headers: {
+            authorization: authObj.access_token,
+          },
         })
           .then(res => res.json())
           .then(res => {
-            //isUser & token & userInfo
             if (res.isExistedUser) {
-              maintainLogin
-                ? localStorage.setItem('token', res.token)
-                : sessionStorage.setItem('token', res.token);
+              localStorage.setItem('token', res.token);
+              localStorage.setItem('user', JSON.stringify(res.userInfo));
               history.push('/');
             } else {
               history.push({
                 pathname: '/signup',
-                props: res,
+                props: res.newUser,
               });
             }
           });

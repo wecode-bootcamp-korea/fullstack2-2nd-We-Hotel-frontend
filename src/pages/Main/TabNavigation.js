@@ -36,8 +36,9 @@ const Container = styled(BasicContainer)`
   display: grid;
   place-items: center center;
   min-width: 768px;
-  padding: 0.5rem 3.5rem;
+  padding: 0.2rem 4rem;
   background-color: white;
-  border-top: 1px solid ${({ theme }) => theme.colors['gray-100']};
+  /* border-top: 1px solid ${({ theme }) => theme.colors['gray-100']}; */
+  border-top: 1px solid rgb(231, 231, 231);
   z-index: 99911;
 `;
