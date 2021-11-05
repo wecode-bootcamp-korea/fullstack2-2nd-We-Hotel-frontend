@@ -11,7 +11,7 @@ import { TOGGLEMODAL, TOGGLEXBTN } from '../../Contexts/constants';
 import Uprasing from '../../components/Modals/Uprasing';
 
 function List({ match }) {
-  const id = match.params.id;
+  const { mainId, subId } = match.params;
   const [data, setData] = useState([]);
   const [city, setCity] = useState([]);
   const [modalState, modalDispatch] = useModalDispatch();
@@ -26,17 +26,31 @@ function List({ match }) {
   };
 
   useEffect(() => {
-    getData();
+    if (!subId) {
+      getData();
+    } else {
+      getSubData();
+    }
     modalDispatch({ type: TOGGLEXBTN, id: listModalId2 });
     modalDispatch({ type: TOGGLEXBTN, id: listModalId1 });
   }, []);
 
   const getData = () => {
-    fetch('/data/LIST_DATA/ACCOMODATION.json')
+    fetch(`http://localhost:8000/accommodation/main/${mainId}`)
       .then(res => res.json())
-      .then(res => setData(res.ACCOMODATION));
+      .then(res => setData(res.DATA));
   };
-
+  const getSubData = () => {
+    fetch(`http://localhost:8000/accommodation/sub/${subId}`)
+      .then(res => res.json())
+      .then(res => setData(res.DATA));
+  };
+  // const getLocationData = () => {
+  //   fetch(`http://localhost:8000/accommodation/filter/location/${subId}`)
+  //     .then(res => res.json())
+  //     .then(res => setData(res.DATA));
+  // };
+  console.log(data);
   return (
     <>
       <Uprasing id={listModalId2}>
@@ -45,9 +59,10 @@ function List({ match }) {
       <Header />
       <MainList>
         <SelectContainer onClick={onClick} selectedDay={selectedDay} />
-        {data.map((element, id) => {
-          return <AccommodationContainer key={id} data={element} />;
-        })}
+        {data &&
+          data.map((element, id) => {
+            return <AccommodationContainer key={id} data={element} />;
+          })}
         {/* <InfiniteScroll /> */}
       </MainList>
     </>

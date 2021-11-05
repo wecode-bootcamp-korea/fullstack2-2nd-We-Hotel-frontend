@@ -18,7 +18,7 @@ function ReservationMap({ accomodationId, mapItem, lat, lng }) {
       </MapImg>
       <MapInfo>
         <MapInfoBox>
-          <MapInfoTitle>hotel name</MapInfoTitle>
+          <MapInfoTitle>파크하얏트부산</MapInfoTitle>
           <MapInfoBtn>
             <MapInfoBtn>
               <Btn>

@@ -7,14 +7,16 @@ import styled from 'styled-components';
 function MyDaily() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
-  const [userInfo] = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     fetch('http://localhost:3000/data/MyDaily/MYDAILY.json')
       .then(res => res.json())
       .then(res => setData(res.mydaily));
-
-    setUser(userInfo);
+    const userInfo = localStorage.getItem('user');
+    if (userInfo) {
+      const [userParsed] = JSON.parse(userInfo);
+      setUser(userParsed);
+    }
   }, []);
 
   const token = localStorage.getItem('token');

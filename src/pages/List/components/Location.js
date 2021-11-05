@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Uprasing from '../../../components/Modals/Uprasing';
 import styled from 'styled-components';
 
 function LocationMenu({ townName }) {
+  const history = useHistory();
   const [city, setCity] = useState([]);
   const [town, setTown] = useState({});
   const [cityId, setCityId] = useState(1);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/LIST_DATA/LOCATION.json')
+    fetch('http://localhost:8000/category')
       .then(res => res.json())
       .then(res => {
-        setCity(res.CITY);
-        setTown(res.CITY[0].town);
-        setCityId(res.CITY[0].id);
+        setCity(res.categoryList);
+        setTown(res.categoryList[0].town);
+        setCityId(res.categoryList[0].id);
       });
   }, []);
 
@@ -46,7 +48,10 @@ function LocationMenu({ townName }) {
             {town.length > 0 &&
               town.map(item => (
                 <SubLocationSelect
-                  onClick={() => townName(item.name)}
+                  onClick={() => {
+                    townName(item.name);
+                    history.push(`/list/hotel/location/${item.id}`);
+                  }}
                   key={item.key}
                 >
                   {item.name}

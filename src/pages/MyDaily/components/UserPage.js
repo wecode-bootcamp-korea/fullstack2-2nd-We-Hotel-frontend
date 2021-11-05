@@ -72,8 +72,7 @@ function UserPage({ data, user }) {
                 <GoArrow />
               </UserPoint>
               <DetailPoint>
-                <PointIcon />
-                1000
+                <PointIcon />0
               </DetailPoint>
             </CouponPoint>
           </UserItem>

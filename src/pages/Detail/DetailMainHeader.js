@@ -11,7 +11,7 @@ const DetailMainHeader = ({ hotelInfo }) => {
       <Message>
         <ThumbIconItem />
         <LikeCount>{hotelInfo.likeCount}</LikeCount>
-        <LikeMessage>명이 좋아합니다 </LikeMessage>
+        <LikeMessage>133명이 좋아합니다 </LikeMessage>
       </Message>
       <Border margin={5} />
       <Message>데일리 트루어워즈</Message>

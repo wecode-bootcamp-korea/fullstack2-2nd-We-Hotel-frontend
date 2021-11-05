@@ -29,7 +29,14 @@ const Room = ({ calPrices, item: { grade, option, price, image, id } }) => {
           </PriceMessage>
         </Column>
       </RoomWrapper>
-      <Reserve onClick={() => history.push('/')}>예약하기</Reserve>
+      <Reserve
+        onClick={() => {
+          alert('예약이 완료되었습니다');
+          history.push('/reservation/1');
+        }}
+      >
+        예약하기
+      </Reserve>
     </Conatiner>
   );
 };

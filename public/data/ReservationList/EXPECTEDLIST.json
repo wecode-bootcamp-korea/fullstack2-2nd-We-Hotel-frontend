@@ -3,14 +3,14 @@
     {
       "id": 1,
       "expected": "이용예정",
-      "expectedDate": "예정일자는 2021년 11월 11일 입니다.",
-      "name": "서울 짱 좋은 호텔",
+      "expectedDate": "예정일자는 2021년 11월 08일 입니다.",
+      "name": "파크하얏트부산",
       "checkIn": "체크인",
-      "checkInDate": "2021.11.11 (목) 15:00",
+      "checkInDate": "2021.11.08 (목) 15:00",
       "checkOut": "체크아웃",
-      "checkOutDate": "2021.11.12 (금) 11:00",
+      "checkOutDate": "2021.11.09 (금) 11:00",
       "room": "객실",
-      "roomgrade": "스탠다드",
+      "roomgrade": "스위트",
       "img": "https://images.unsplash.com/photo-1603428760740-c0089e3760f2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGhvdGVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
     }
   ]

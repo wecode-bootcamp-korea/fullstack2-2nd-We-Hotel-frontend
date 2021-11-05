@@ -23,8 +23,8 @@ function ReservationDetail({ match }) {
   const sample = {
     id: 1,
     accomodation_id: 1,
-    name: '서울 신라호텔',
-    detail_address: '서울특별시 중구 동호로 249',
+    name: '파크하얏트부산',
+    detail_address: '부산 해운대구 마린시티1로 51',
   };
 
   useEffect(() => {

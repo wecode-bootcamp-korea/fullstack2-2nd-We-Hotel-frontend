@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const Carousel = props => {
   const { carouselItem, type, width, height } = props;
   const totalImgCount = carouselItem.length;
-  const [activeSlide, setActiveSlide] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const styles = {
     width,

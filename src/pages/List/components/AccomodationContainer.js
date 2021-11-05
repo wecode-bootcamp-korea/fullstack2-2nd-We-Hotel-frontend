@@ -7,7 +7,7 @@ import { addToStorage } from '../utils';
 
 function AccommodationContainer({ data, page }) {
   const history = useHistory();
-  const { id, img, name, location, price, grade } = data;
+  const { id, image, accommodationName, ARRAY, grade, detailAddress } = data;
   const [isClicked, setIsClicked] = useState(false);
 
   const handleHeart = () => {
@@ -19,6 +19,10 @@ function AccommodationContainer({ data, page }) {
     history.push(`/detail/${id}`);
   };
 
+  const numberWithCommas = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <AccommodationBar>
       <ImageContainer>
@@ -28,12 +32,17 @@ function AccommodationContainer({ data, page }) {
           <EmptyHeart onClick={handleHeart} />
         )}
         <GradeBox>{grade}</GradeBox>
-        <HotelImage src={img} alt="" onClick={accomodationClickHandler} />
-        <HotelName onClick={accomodationClickHandler}>{name}</HotelName>
-        <HotelLocation>{location}</HotelLocation>
+        <HotelImage src={image} alt="" onClick={accomodationClickHandler} />
+        <HotelName onClick={accomodationClickHandler}>
+          {accommodationName}
+        </HotelName>
+        <HotelLocation>{detailAddress}</HotelLocation>
         {page !== 'recent' && (
           <Price>
-            <Discount>{price}</Discount>
+            <Discount>
+              100,000원
+              {/* {numberWithCommas(JSON.parse(ARRAY)[0].price)}원 */}
+            </Discount>
           </Price>
         )}
       </ImageContainer>

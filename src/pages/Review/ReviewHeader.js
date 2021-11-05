@@ -1,12 +1,19 @@
 import React from 'react';
 import { ArrowLeft } from '@styled-icons/bootstrap/ArrowLeft';
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 const ReviewHeader = () => {
+  const history = useHistory();
   return (
     <HeaderContainer>
-      <PrevIcon size="24" />
+      <PrevIcon
+        size="24"
+        onClick={() => {
+          window.location.replace('/detail/1');
+        }}
+      />
       <ReviewTitle>트루 리뷰</ReviewTitle>
     </HeaderContainer>
   );

@@ -76,7 +76,7 @@ function Signup({ location }) {
           localStorage.setItem('token', data.token);
           console.log(data.userInfo);
           localStorage.setItem('user', JSON.stringify(data.userInfo));
-          alert(`${data.userInfo.nickname}님 환영합니다.`);
+          alert('환영합니다! 여기는 위호텔 ๑•‿•๑');
           history.push('/');
         });
     } else {
