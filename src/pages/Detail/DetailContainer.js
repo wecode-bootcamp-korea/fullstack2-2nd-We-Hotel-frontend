@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
-import { ROUTES } from '../../utils/constants';
+import {
+  detailCarocelInit,
+  detailHotelInit,
+  ROUTES,
+} from '../../utils/constants';
 import { useState } from 'react/cjs/react.development';
 import { getAveragePrice } from './utils';
 import { getDataAllPromise } from '../../utils/commonUtils';
@@ -10,20 +14,21 @@ import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 import { TOGGLEXBTN, TOGGLEMODAL } from '../../Contexts/constants';
 import { useCalendarDispatch } from '../../Contexts/CalendarContext/CalendarContext';
 import { getDateForm } from '../../Hooks/CalendarController/utils';
+import { useParams, withRouter } from 'react-router';
 
 function Detail() {
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [carouselItem, setCarouselItem] = useState([]);
-  const [hotelInfo, setHotelInfo] = useState([]);
+  const [carouselItem, setCarouselItem] = useState(detailCarocelInit);
+  const [hotelInfo, setHotelInfo] = useState(detailHotelInit);
   const [option, setOption] = useState(OPTIONS[0].e);
   const [modalState, modalDispatch] = useModalDispatch();
   const [{ prices, selectedDay }, calendarDispatch] = useCalendarDispatch();
-
   useEffect(() => {
     getDataAllPromise({
       args: [
-        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL },
-        { setFunc: setHotelInfo, url: ROUTES.DETAIL_INFO },
+        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL(id) },
+        { setFunc: setHotelInfo, url: `${ROUTES.DETAIL_INFO}/${id}` },
         {
           setFunc: calendarDispatch,
           url: ROUTES.GET_OPTION_PRICE,
@@ -83,4 +88,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default withRouter(Detail);

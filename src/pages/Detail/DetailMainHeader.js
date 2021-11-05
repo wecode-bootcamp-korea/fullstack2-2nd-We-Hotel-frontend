@@ -6,11 +6,11 @@ import { ThumbsUp } from '@styled-icons/fa-regular/ThumbsUp';
 const DetailMainHeader = ({ hotelInfo }) => {
   return (
     <MainHeader>
-      <Message>{hotelInfo[0].grade}</Message>
-      <Title>{hotelInfo[0].title}</Title>
+      <Message>{hotelInfo && hotelInfo[0]?.grade}</Message>
+      <Title>{hotelInfo && hotelInfo[0]?.title}</Title>
       <Message>
         <ThumbIconItem />
-        <LikeCount>{hotelInfo[0].likeCount}</LikeCount>
+        <LikeCount>{hotelInfo.likeCount}</LikeCount>
         <LikeMessage>명이 좋아합니다 </LikeMessage>
       </Message>
       <Border margin={5} />

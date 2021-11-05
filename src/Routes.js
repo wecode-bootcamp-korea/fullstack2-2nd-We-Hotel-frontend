@@ -32,7 +32,7 @@ function Router() {
         <Route exact path="/search/result" component={SearchResult} />
         <Route exact path="/reservation" component={Reservation} />
         <Route exact path="/reservation/:id" component={ReservationDetail} />
-        <Route exact path="/detail" component={Detail} />
+        <Route exact path="/detail/:id" component={Detail} />
       </Switch>
       <TabNavigation />
     </BrowserRouter>
