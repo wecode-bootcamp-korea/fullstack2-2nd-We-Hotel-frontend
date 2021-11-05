@@ -27,7 +27,6 @@ function Detail() {
   useEffect(() => {
     getDataAllPromise({
       args: [
-        { setFunc: setCarouselItem, url: ROUTES.DETAIL_CAROCEL(id) },
         { setFunc: setHotelInfo, url: `${ROUTES.DETAIL_INFO}/${id}` },
         {
           setFunc: calendarDispatch,

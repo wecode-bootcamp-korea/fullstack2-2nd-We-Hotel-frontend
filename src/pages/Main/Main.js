@@ -42,7 +42,7 @@ function Main({ history }) {
       <Category
         categoryItem={categoryItem}
         _onClick={() => {
-          history.push(`/location/{}`);
+          history.push(`/list/1`);
         }}
       />
       <Grid
@@ -52,7 +52,7 @@ function Main({ history }) {
         title="고민타파! WeHotel 최고 인기의 서울 호텔 Best4"
         subTitle="한주간 예약율이 가장 높은 Weekly Choice!"
         _onClick={() => {
-          history.push(`/location/seoul`);
+          history.push(`/list/2`);
         }}
       />
       <Grid
@@ -62,7 +62,7 @@ function Main({ history }) {
         title="오늘만 특별할인! 부산으로 떠날 절호의 기회!"
         subTitle="부산의 낭만을 선사해줄 WeHotel만의 특별한 선택!"
         _onClick={() => {
-          history.push(`/location/pusan`);
+          history.push(`/list/3`);
         }}
       />
       <Grid
@@ -72,7 +72,7 @@ function Main({ history }) {
         title="신혼여행객들을 위한 WeHotel의 깜짝 이벤트~!"
         subTitle="인생 최고의 경험을 위해 특별한 호텔을 준비했어요~!"
         _onClick={() => {
-          history.push(`/location/jeju`);
+          history.push(`/list/4`);
         }}
       />
       <Grid

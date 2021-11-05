@@ -139,7 +139,7 @@ export const detailCarocelInit = [
   {
     id: 1,
     name: 'hotel1',
-    url: 'https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg',
+    url: 'https://unsplash.com/photos/_dS27XGgRyQ/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MTF8fGhvdGVsfHwwfHx8fDE2MzYwODgwMTU&force=true',
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ export const detailCarocelInit = [
   {
     id: 3,
     name: 'hotel3',
-    url: 'https://www.lottehotel.com/content/dam/lotte-hotel/rf/g-0734.jpg.thumb.768.768.jpg',
+    url: 'https://images.unsplash.com/photo-1529551739587-e242c564f727?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80',
   },
 ];
 

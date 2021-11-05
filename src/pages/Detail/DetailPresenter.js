@@ -10,6 +10,7 @@ import DetailSectionB from './DetailSectionB';
 import Map from '../../components/Map/Map';
 import TrueReview from './TrueReview';
 import axios from 'axios';
+import Header from '../../components/Header/Header';
 
 function DetailPresenter({ dates, getDateForm, funcs, states }) {
   const [mapItem, setmapItem] = useState([]);
@@ -28,6 +29,7 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
   }, []);
   return (
     <>
+      <Header />
       <Container>
         <CalendarModal />
         {!states?.isShow && (
@@ -36,6 +38,7 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
             <Main>
               <DetailMainHeader hotelInfo={states?.hotelInfo} />
               <Border height={11} color={'white'} />
+              <Map mapItem={mapItem} width="768" />
               <DetailSectionA
                 fromDate={dates?.fromDate}
                 toDate={dates?.toDate}
@@ -51,7 +54,6 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
 
               <MoreBtn>더보기</MoreBtn>
               <TrueReview trueReview />
-              <Map mapItem={mapItem} width="768" />
             </Main>
           </>
         )}
@@ -66,7 +68,7 @@ const Container = styled.div`
   justify-content: center;
   position: relative;
   max-width: 768px;
-  padding-top: 60vh;
+  padding-top: 50vh;
   margin: 0px auto;
   color: ${({ theme }) => theme.colors['font-color']};
 `;

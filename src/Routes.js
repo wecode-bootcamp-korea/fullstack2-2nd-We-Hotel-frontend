@@ -23,7 +23,8 @@ function Router() {
         <Route exact path="/" component={Main} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/list" component={List} />
+        <Route exact path="/list/:mainId" component={List} />
+        <Route exact path="/list/:mainId/:subId" component={List} />
         <Route exact path="/mydaily" component={MyDaily} />
         <Route exact path="/review" component={Review} />
         <Route exact path="/search" component={Search} />

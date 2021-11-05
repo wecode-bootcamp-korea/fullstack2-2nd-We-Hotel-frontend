@@ -21,9 +21,9 @@ function Reservation() {
       .then(res => res.json())
       .then(res => setExpectedList(res.ExpectedList));
 
-    fetch('http://localhost:3000/data/ReservationList/COMPLETEDLIST.json')
-      .then(res => res.json())
-      .then(res => setCompletedList(res.CompletedList));
+    // fetch('http://localhost:3000/data/ReservationList/COMPLETEDLIST.json')
+    //   .then(res => res.json())
+    //   .then(res => setCompletedList(res.CompletedList));
   }, []);
 
   return (
