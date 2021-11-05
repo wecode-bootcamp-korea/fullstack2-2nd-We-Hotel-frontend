@@ -1,11 +1,11 @@
 import { CalendarContainer } from '../../components/Calendar/CalendarContainer';
 import Uprasing from '../../components/Modals/Uprasing';
-import { detailModalId } from './constants';
+import { detailModalId2 } from './constants';
 
 const CalendarModal = () => {
   return (
-    <Uprasing id={detailModalId}>
-      <CalendarContainer priceShow={true} modalId={detailModalId} />
+    <Uprasing id={detailModalId2}>
+      <CalendarContainer priceShow={true} modalId={detailModalId2} />
     </Uprasing>
   );
 };

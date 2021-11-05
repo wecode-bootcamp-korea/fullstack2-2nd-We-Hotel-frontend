@@ -10,6 +10,7 @@ const ModalContext = ({ children }) => {
     modal_2: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
     modal_3: { isShow: false, y: 1500, second: 0.2, backBtnShow: true },
     modal_4: { isShow: false, y: 300, second: 3, backBtnShow: false },
+    modal_10: { isShow: false, y: 1500, second: 0.2, backBtnShow: false },
   });
 
   return (

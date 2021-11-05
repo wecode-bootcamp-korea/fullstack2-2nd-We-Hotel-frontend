@@ -8,7 +8,7 @@ import { useState } from 'react/cjs/react.development';
 import { getAveragePrice } from './utils';
 import { getDataAllPromise } from '../../utils/commonUtils';
 import Loading from '../../components/Loading/Loading';
-import { detailModalId, OPTIONS } from './constants';
+import { detailModalId, detailModalId2, OPTIONS } from './constants';
 import DetailPresenter from './DetailPresenter';
 import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 import { TOGGLEXBTN, TOGGLEMODAL } from '../../Contexts/constants';
@@ -67,7 +67,7 @@ function Detail() {
 
   const onClick = () => {
     window.scrollTo(0, 0);
-    modalDispatch({ type: TOGGLEMODAL, id: detailModalId });
+    modalDispatch({ type: TOGGLEMODAL, id: detailModalId2 });
   };
 
   return loading ? (
@@ -79,7 +79,7 @@ function Detail() {
       states={{
         carouselItem,
         hotelInfo,
-        isShow: modalState[detailModalId].isShow,
+        isShow: modalState[detailModalId2].isShow,
         option,
         calPrices,
       }}

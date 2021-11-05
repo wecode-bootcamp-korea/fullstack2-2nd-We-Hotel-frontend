@@ -3,6 +3,7 @@ import { BookOpen } from '@styled-icons/feather/BookOpen';
 import { Triangle } from '@styled-icons/feather/Triangle';
 
 export const detailModalId = 'modal_1';
+export const detailModalId2 = 'modal_10';
 export const mapModalId = 'modal_3';
 export const reviewModalId = 'modal_4';
 
