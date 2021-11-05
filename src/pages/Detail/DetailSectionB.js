@@ -4,6 +4,7 @@ import Room from './components/Room';
 import { OPTIONS } from './constants';
 import { getDistanceDate } from './utils';
 import RadioBtns from './DetailRadioBtns';
+import { detailRoomInit } from '../../utils/constants';
 
 const DetailSectionB = ({
   hotelInfo,
@@ -12,6 +13,7 @@ const DetailSectionB = ({
   getDateForm,
   option,
 }) => {
+  console.log(hotelInfo);
   return (
     <SectionB>
       {getDistanceDate(getDateForm) > 1 && (
@@ -22,9 +24,11 @@ const DetailSectionB = ({
           name={'option'}
         />
       )}
-      {hotelInfo[0].rooms.map(item => (
-        <Room calPrices={calPrices} key={item.id} item={item} />
-      ))}
+      {!hotelInfo[0]?.rooms?.length
+        ? detailRoomInit
+        : hotelInfo[0].rooms.map(item => {
+            return <Room calPrices={calPrices} key={item.id} item={item} />;
+          })}
     </SectionB>
   );
 };

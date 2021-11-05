@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 import Border from '../../components/Border/Border';
 import { MoreBtn } from '../../styles/detailStyles';
-import { useContext } from 'react/cjs/react.development';
 import CalendarModal from './CalendarModal';
 import DetailCarousel from './DetailCarousel';
 import DetailMainHeader from './DetailMainHeader';
@@ -13,7 +12,6 @@ import TrueReview from './TrueReview';
 import axios from 'axios';
 
 function DetailPresenter({ dates, getDateForm, funcs, states }) {
-  const theme = useContext(ThemeContext);
   const [mapItem, setmapItem] = useState([]);
 
   useEffect(() => {
