@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from '../Loading/Loading';
 import styled from 'styled-components';
 
 const Grid = props => {
@@ -56,7 +57,11 @@ const Grid = props => {
       </GridContainer>
     );
   } else {
-    return <div>로딩중</div>;
+    return (
+      <GridContainer>
+        <Loading />
+      </GridContainer>
+    );
   }
 };
 
