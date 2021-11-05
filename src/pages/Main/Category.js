@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from '../../components/Loading/Loading';
 import styled from 'styled-components';
 
 const Category = props => {
@@ -20,15 +21,15 @@ const Category = props => {
       </CategoryContainer>
     );
   } else {
-    return <div>로딩중</div>;
+    return (
+      <CategoryContainer>
+        <Loading />
+      </CategoryContainer>
+    );
   }
 };
 
 export default Category;
-
-Category.defaultProps = {
-  _onClick: () => {},
-};
 
 const CategoryContainer = styled.div`
   max-width: 760px;
