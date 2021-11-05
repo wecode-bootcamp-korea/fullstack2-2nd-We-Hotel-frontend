@@ -6,6 +6,7 @@ import { useModalDispatch } from '../../Contexts/ModalContext/ModalContext';
 function Uprasing({ children, id }) {
   const [modalState, modalDispatch] = useModalDispatch();
   const { isShow, second, y, backBtnShow } = modalState[id];
+  console.log(id);
   return isShow ? (
     <Container y={y} second={second}>
       <Wrapper>
@@ -25,14 +26,15 @@ const Container = styled.div`
   position: fixed;
   top: 50px;
   width: 100%;
-  height: max-content;
   padding: 0 1rem;
   background-color: rgba(255, 255, 255, 1);
   transition: all linear ${({ second }) => second}s;
   transform: translateY(${({ y }) => y}px);
   left: 50%;
+  height: 100%;
   transform: translateX(-50%);
   z-index: 999;
+  background-color: white;
 `;
 
 const Wrapper = styled.div`

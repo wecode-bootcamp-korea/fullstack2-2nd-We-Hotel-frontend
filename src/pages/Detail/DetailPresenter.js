@@ -28,8 +28,8 @@ function DetailPresenter({ dates, getDateForm, funcs, states }) {
   }, []);
   return (
     <>
-      <CalendarModal />
       <Container>
+        <CalendarModal />
         {!states?.isShow && (
           <>
             <DetailCarousel carouselItem={states?.carouselItem} />
@@ -67,7 +67,7 @@ const Container = styled.div`
   position: relative;
   max-width: 768px;
   padding-top: 60vh;
-  margin: 0 auto;
+  margin: 0px auto;
   color: ${({ theme }) => theme.colors['font-color']};
 `;
 
