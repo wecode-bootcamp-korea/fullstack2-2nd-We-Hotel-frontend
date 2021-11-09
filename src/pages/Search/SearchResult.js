@@ -28,9 +28,7 @@ function SearchResult({ location }) {
         );
         setData(response);
         setLoading(false);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
     fetchData();
   }, []);

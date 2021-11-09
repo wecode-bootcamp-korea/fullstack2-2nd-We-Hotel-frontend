@@ -42,24 +42,23 @@ export default Footer;
 
 const Button = styled.button`
   display: block;
+  margin: 8px;
   width: 100%;
   height: 30px;
-  /* width: 330px; */
   border: 1px solid #e7e7e7;
-  margin: 8px;
-  cursor: pointer;
   background-color: white;
+  cursor: pointer;
 `;
 
 const SideButton = styled.button`
   margin: 0 10px 10px 10px;
   padding: 0;
-  font-size: 11px;
-  font-weight: bold;
-  color: gray;
   border: 0;
   outline: 0;
+  color: gray;
   background-color: #dcdde1;
+  font-size: 11px;
+  font-weight: bold;
   cursor: pointer;
 `;
 
@@ -72,14 +71,14 @@ const ButtonContainer = styled.div`
 
 const Text = styled.p`
   margin: 5px;
-  font-size: 12px;
   color: gray;
+  font-size: 12px;
 `;
 
 const SubText = styled.p`
   margin: 10px 0 5px 10px;
-  font-size: 10px;
   color: gray;
+  font-size: 10px;
 `;
 
 const Strong = styled.strong`
@@ -88,9 +87,9 @@ const Strong = styled.strong`
 
 const AgreedLink = styled.a`
   margin: 0 5px;
+  color: gray;
   font-size: 12px;
   text-decoration-line: none;
-  color: gray;
   cursor: pointer;
 `;
 
@@ -108,7 +107,6 @@ const SubContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  /* width: 720px; */
   padding: 10px 15px 10px 15px;
   bottom: 0;
   background-color: #f5f6fa;
@@ -118,6 +116,6 @@ const MainFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 768px;
   margin: 0 auto 58px;
+  max-width: 768px;
 `;
