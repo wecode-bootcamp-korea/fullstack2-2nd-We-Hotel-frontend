@@ -45,12 +45,7 @@ function List({ match }) {
       .then(res => res.json())
       .then(res => setData(res.DATA));
   };
-  // const getLocationData = () => {
-  //   fetch(`http://localhost:8000/accommodation/filter/location/${subId}`)
-  //     .then(res => res.json())
-  //     .then(res => setData(res.DATA));
-  // };
-  console.log(data);
+
   return (
     <>
       <Uprasing id={listModalId2}>
@@ -77,6 +72,6 @@ const MainList = styled.section`
   justify-content: center;
   align-items: center;
   position: relative;
-  max-width: 768px;
   margin: 0 auto;
+  max-width: 768px;
 `;

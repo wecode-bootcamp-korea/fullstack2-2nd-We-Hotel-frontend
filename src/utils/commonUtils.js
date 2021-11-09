@@ -14,9 +14,7 @@ const getData = async ({ setFunc, url }) => {
       return;
     }
     setFunc(data.data.data);
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 
 export const getDataAllPromise = async ({ args, setLoading }) => {
@@ -24,7 +22,6 @@ export const getDataAllPromise = async ({ args, setLoading }) => {
   try {
     await Promise.all(funcs);
   } catch (e) {
-    console.log(e);
   } finally {
     setLoading(false);
   }

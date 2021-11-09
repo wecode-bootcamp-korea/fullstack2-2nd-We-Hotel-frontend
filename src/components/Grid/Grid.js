@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const Grid = props => {
   const { locationItem, width, title, subTitle } = props;
-  console.log(locationItem);
   const history = useHistory();
   const styles = {
     width,

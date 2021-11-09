@@ -39,10 +39,7 @@ function AccommodationContainer({ data, page }) {
         <HotelLocation>{detailAddress}</HotelLocation>
         {page !== 'recent' && (
           <Price>
-            <Discount>
-              100,000원
-              {/* {numberWithCommas(JSON.parse(ARRAY)[0].price)}원 */}
-            </Discount>
+            <Discount>100,000원</Discount>
           </Price>
         )}
       </ImageContainer>
