@@ -1,9 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import styled from 'styled-components';
 
 const Grid = props => {
-  const { locationItem, width, title, subTitle, _onClick } = props;
+  const { locationItem, width, title, subTitle } = props;
+  console.log(locationItem);
+  const history = useHistory();
   const styles = {
     width,
   };
@@ -14,7 +17,12 @@ const Grid = props => {
         <TitleWrap>
           <Title>{title}</Title>
           <SubTitle>{subTitle}</SubTitle>
-          <AllViewBtn type="button" onClick={_onClick}>
+          <AllViewBtn
+            type="button"
+            onClick={() => {
+              history.push(`/list`);
+            }}
+          >
             ➥ 모두 보기
           </AllViewBtn>
         </TitleWrap>
@@ -22,6 +30,7 @@ const Grid = props => {
           {locationItem.map(
             ({
               id,
+              accommodation_id,
               accommodation,
               grade,
               image_url,
@@ -34,7 +43,12 @@ const Grid = props => {
               ).toLocaleString();
 
               return (
-                <ContentItemWrap key={id}>
+                <ContentItemWrap
+                  key={id}
+                  onClick={() => {
+                    history.push(`/accommodation/${accommodation_id}`);
+                  }}
+                >
                   <ImageWrapper>
                     <ContentImage src={image_url} />
                   </ImageWrapper>

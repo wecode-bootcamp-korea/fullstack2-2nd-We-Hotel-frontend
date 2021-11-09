@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
 import styled from 'styled-components';
 
 const Category = props => {
-  const { categoryItem, _onClick } = props;
+  const { categoryItem } = props;
+  const history = useHistory();
 
   if (categoryItem) {
     return (
@@ -11,8 +13,13 @@ const Category = props => {
         <CategoryWrap>
           {categoryItem.map(({ id, url, locationName }) => {
             return (
-              <ItemWrap key={id} onClick={_onClick}>
-                <ItemImage src={url} />
+              <ItemWrap
+                key={id}
+                onClick={() => {
+                  history.push(`/list/${id}`);
+                }}
+              >
+                <ItemImage src={url} alt={locationName} />
                 <ItemName>{locationName}</ItemName>
               </ItemWrap>
             );

@@ -26,7 +26,7 @@ function Router() {
         <Route exact path="/list/:mainId" component={List} />
         <Route exact path="/list/:mainId/:subId" component={List} />
         <Route exact path="/mydaily" component={MyDaily} />
-        <Route exact path="/review" component={Review} />
+        <Route exact path="/accommodation/review/:id" component={Review} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/wishlist" component={WishList} />
         <Route exact path="/recentsaw" component={RecentSaw} />
