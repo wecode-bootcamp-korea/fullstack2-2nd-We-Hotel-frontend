@@ -1,15 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function SignupForm({
-  title,
-  type,
-  value,
-  description,
-  onChange,
-  name,
-  readOnly,
-}) {
+function SignupForm({ title, type, value, description, onChange, name }) {
   return (
     <form>
       <FormTitle>{title}</FormTitle>

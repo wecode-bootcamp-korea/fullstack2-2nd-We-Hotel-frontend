@@ -7,7 +7,6 @@ import styled from 'styled-components';
 function Signup({ location }) {
   const history = useHistory();
   const userInfo = location.props;
-  console.log(userInfo);
   const [inputs, setInputs] = useState({
     name: userInfo ? userInfo.nickname : '',
     phoneNumber: '',
@@ -60,7 +59,6 @@ function Signup({ location }) {
 
   const signupButtonClickHandler = e => {
     const input = { ...inputs, ...userInfo };
-    console.log(JSON.stringify(input));
     e.preventDefault();
     if (Object.values(inputValidated).every(v => v)) {
       fetch('http://localhost:8000/user/signup', {
@@ -74,7 +72,6 @@ function Signup({ location }) {
         .then(res => res.json())
         .then(data => {
           localStorage.setItem('token', data.token);
-          console.log(data.userInfo);
           localStorage.setItem('user', JSON.stringify(data.userInfo));
           alert('환영합니다! 여기는 위호텔 ๑•‿•๑');
           history.push('/');
