@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
-function WishListNone() {
+function WishListNone({ page }) {
   const history = useHistory();
   const GotoMain = () => {
     history.push(`/`);
@@ -10,7 +10,7 @@ function WishListNone() {
 
   return (
     <ListBox>
-      <ReservationList>위시리스트에 상품이 없습니다.</ReservationList>
+      <ReservationList>{page} 상품이 없습니다.</ReservationList>
       <ReservationDesk>
         데일리호텔의 다양한 호텔을 구경해보세요.
       </ReservationDesk>

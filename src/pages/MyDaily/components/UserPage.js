@@ -32,13 +32,6 @@ function UserPage({ data, user }) {
 
   const Logout = () => {
     if (window.confirm('로그아웃 하시겠습니까??')) {
-      // Kakao.init(process.env.REACT_APP_JAVASCRIPT_KEY);
-      // console.log(Kakao.isInitialized());
-
-      if (!Kakao.Auth.getAccessToken()) {
-        console.log('로그인 놉');
-        return;
-      }
       localStorage.clear();
       Kakao.Auth.logout(alert('정상적으로 로그아웃 되었습니다.'));
       history.push('/');

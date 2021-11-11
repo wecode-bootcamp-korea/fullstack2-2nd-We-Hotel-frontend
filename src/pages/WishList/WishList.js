@@ -25,7 +25,7 @@ function WishList() {
             );
           })
         ) : (
-          <WishListNone />
+          <WishListNone page={'위시리스트'} />
         )}
       </WishHotel>
     </>

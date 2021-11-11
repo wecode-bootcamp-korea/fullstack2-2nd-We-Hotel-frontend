@@ -13,7 +13,6 @@ const DetailSectionB = ({
   getDateForm,
   option,
 }) => {
-  console.log(hotelInfo);
   return (
     <SectionB>
       {getDistanceDate(getDateForm) > 1 && (

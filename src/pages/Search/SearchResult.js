@@ -4,6 +4,7 @@ import { Search } from '@styled-icons/boxicons-regular/Search';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import List from '../List/List';
+import WishListNone from '../WishList/WishListNone';
 import { getFullDate } from './utils';
 import { API_ENDPOINT } from '../../api';
 import axios from 'axios';
@@ -16,6 +17,7 @@ function SearchResult({ location }) {
     ignoreQueryPrefix: true,
   });
   const { value, startDate, endDate } = query;
+
   useEffect(() => {
     const encodedValue = encodeURI(value);
     const fetchData = async () => {
@@ -46,7 +48,11 @@ function SearchResult({ location }) {
         <SearchCount>
           <Count>결과 {data.length}건</Count>
         </SearchCount>
-        <List data={data} />
+        {data.length > 0 ? (
+          <List data={data} />
+        ) : (
+          <WishListNone page={'요청하신'} />
+        )}
       </Result>
     </>
   );

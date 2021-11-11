@@ -12,14 +12,6 @@ function ReservationDetail({ match }) {
     lng: 0,
   });
 
-  // const [data, setData] = useState({});
-
-  // useEffect(() => {
-  //   fetch(`/reservation/${match.params.id}`)
-  //     .then(res => res.json)
-  //     .then(res => setData(res));
-  // }, []);
-
   const sample = {
     id: 1,
     accomodation_id: 1,
